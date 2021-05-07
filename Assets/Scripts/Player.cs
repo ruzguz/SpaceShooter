@@ -6,9 +6,13 @@ public class Player : MonoBehaviour
 {
     // General vars
     private Vector3 startingPosition = new Vector3(0,-3,0);
+    // Movement variables
     [SerializeField] private float _speed = 2.5f;
     private float _xLimit = 11.5f;
     private float _minY = -3, _maxY = 0;
+    
+    // Shooting variables
+    [SerializeField] private GameObject _laserPrefab;
 
 
     // Start is called before the first frame update
@@ -21,6 +25,19 @@ public class Player : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {
+        CalculateMovement();
+
+        // If user press space
+        // shoot a laser
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Instantiate(_laserPrefab, transform.position, Quaternion.identity);
+        }
+    }
+
+    void CalculateMovement() 
     {
         // Getting axis values
         float horizontalInput = Input.GetAxis("Horizontal");
