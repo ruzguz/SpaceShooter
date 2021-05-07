@@ -28,11 +28,11 @@ public class Player : MonoBehaviour
     {
         CalculateMovement();
 
-        // If user press space
-        // shoot a laser
-
+        
+        
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            // Shooting a laser
             Instantiate(_laserPrefab, transform.position, Quaternion.identity);
         }
     }
