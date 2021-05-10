@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float _speed = 2.5f;
     private float _xLimit = 11.5f;
     private float _minY = -3, _maxY = 0;
-    [SerializeField] private float _bulletOffset = 2f;
+    [SerializeField] private float _laserOffset = 2f;
     
     // Shooting variables
     [SerializeField] private GameObject _laserPrefab;
@@ -34,8 +34,8 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             // Shooting a laser
-            Vector3 bulletStartPosition = new Vector3(transform.position.x, transform.position.y + _bulletOffset, 0f);
-            Instantiate(_laserPrefab, bulletStartPosition , Quaternion.identity);
+            Vector3 laserStartPosition = new Vector3(transform.position.x, transform.position.y + _laserOffset, 0f);
+            Instantiate(_laserPrefab, laserStartPosition , Quaternion.identity);
         }
     }
 
