@@ -10,7 +10,9 @@ public class Player : MonoBehaviour
     [SerializeField] private float _speed = 2.5f;
     private float _xLimit = 11.5f;
     private float _minY = -3, _maxY = 0;
-    [SerializeField] private float _laserOffset = 2f;
+    [SerializeField] private float _laserOffset = 1f;
+    [SerializeField] private float _fireRate = 0.5f;
+    private bool _canShoot = true;
     
     // Shooting variables
     [SerializeField] private GameObject _laserPrefab;
@@ -33,10 +35,24 @@ public class Player : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            // Shooting a laser
-            Vector3 laserStartPosition = new Vector3(transform.position.x, transform.position.y + _laserOffset, 0f);
-            Instantiate(_laserPrefab, laserStartPosition , Quaternion.identity);
+            if (_canShoot)
+            {
+                // Shooting a laser
+                Vector3 laserStartPosition = new Vector3(transform.position.x, transform.position.y + _laserOffset, 0f);
+                Instantiate(_laserPrefab, laserStartPosition , Quaternion.identity);
+                
+                // Calling cooldown function
+                StartCoroutine(ActiveCooldown());
+            }
         }
+    }
+
+    // Make player wait _fireRate before shoot again
+    IEnumerator ActiveCooldown()
+    {
+        _canShoot = false;
+        yield return new WaitForSeconds(_fireRate);
+        _canShoot = true;
     }
 
     void CalculateMovement() 
