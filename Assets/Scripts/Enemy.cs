@@ -31,6 +31,26 @@ public class Enemy : MonoBehaviour
             float newXposition = Random.Range(-_horizontalLimit, _horizontalLimit);
             transform.position = new Vector3(newXposition, _respawnYPosition, 0);
         }
-   
+    }
+
+    private void OnTriggerEnter(Collider other) {
+        // If other is player
+        // then damage the player
+        // destroy us
+        if (other.gameObject != null && other.CompareTag("Player"))
+        {
+            // TODO: Damage player
+            Destroy(this.gameObject);
+        }
+
+        // If other is laser
+        // then destroy the laser
+        // and destroy us
+        if (other.CompareTag("Laser"))
+        {
+            Destroy(other.gameObject);
+            Destroy(this.gameObject);
+
+        }
     }
 }
