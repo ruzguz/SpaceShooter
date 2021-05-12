@@ -6,15 +6,21 @@ public class Player : MonoBehaviour
 {
     // General vars
     private Vector3 startingPosition = new Vector3(0,-3,0);
+    [SerializeField]
+    private int _lives = 3;
     // Movement variables
-    [SerializeField] private float _speed = 2.5f;
+    [SerializeField] 
+    private float _speed = 2.5f;
     private float _xLimit = 11.5f;
     private float _minY = -3, _maxY = 0;
     // Shooting variables 
-    [SerializeField] private float _laserOffset = 1f;
-    [SerializeField] private float _fireRate = 0.5f;
+    [SerializeField] 
+    private float _laserOffset = 1f;
+    [SerializeField] 
+    private float _fireRate = 0.5f;
     private bool _canShoot = true;
-    [SerializeField] private GameObject _laserPrefab;
+    [SerializeField] 
+    private GameObject _laserPrefab;
 
 
     // Start is called before the first frame update
@@ -81,4 +87,16 @@ public class Player : MonoBehaviour
             // Calling cooldown function
             StartCoroutine(ActiveCooldown());
     }
+
+    public void Damage()
+    {
+        _lives--;
+
+        // Check dead
+        if (_lives <= 0) 
+        {
+            Destroy(this.gameObject);
+        }
+    }
 }
+
