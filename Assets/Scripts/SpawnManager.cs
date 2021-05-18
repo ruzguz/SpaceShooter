@@ -36,7 +36,8 @@ public class SpawnManager : MonoBehaviour
             Vector3 randomPosition = new Vector3(randomXPosition, _startYPosition, transform.position.z);
                     
             // Spawning enemy and wait 5 seconds
-            Instantiate(_enemyPrefab, randomPosition, Quaternion.identity);
+            GameObject newEnemy = Instantiate(_enemyPrefab, randomPosition, Quaternion.identity);
+            newEnemy.transform.parent = this.transform;
             yield return new WaitForSeconds(_spawnDelay);
         }
     }
