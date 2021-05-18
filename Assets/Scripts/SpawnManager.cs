@@ -12,6 +12,8 @@ public class SpawnManager : MonoBehaviour
     private float _xRange = 11f;
     [SerializeField]
     private float _spawnDelay = 5f;
+    [SerializeField]
+    private bool _stopSpawn = false;
 
     // Start is called before the first frame update
     void Start()
@@ -27,18 +29,20 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator SpawnRoutine()
     {
-        // Infinite loop
-        //    Instantiate an enemy prefab
-        //    wait 5 seconds
-        while(true)
+        while(_stopSpawn == false)
         {
             // Calculating random position
             float randomXPosition = Random.Range(-_xRange, _xRange);
             Vector3 randomPosition = new Vector3(randomXPosition, _startYPosition, transform.position.z);
-            
+                    
             // Spawning enemy and wait 5 seconds
             Instantiate(_enemyPrefab, randomPosition, Quaternion.identity);
             yield return new WaitForSeconds(_spawnDelay);
         }
+    }
+
+    public void OnPlayerDead()
+    {
+        _stopSpawn = true;
     }
 }

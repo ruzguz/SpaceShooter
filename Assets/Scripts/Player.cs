@@ -21,6 +21,8 @@ public class Player : MonoBehaviour
     private bool _canShoot = true;
     [SerializeField] 
     private GameObject _laserPrefab;
+    // GameObject references 
+    private SpawnManager _spawnManager;
 
 
     // Start is called before the first frame update
@@ -28,6 +30,13 @@ public class Player : MonoBehaviour
     {
         // Set player initial position 
         transform.position = startingPosition;
+
+        _spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
+
+        if (_spawnManager == null) 
+        {
+            Debug.LogError("Spawn Manager is NULL");
+        }
         
     }
 
@@ -95,6 +104,7 @@ public class Player : MonoBehaviour
         // Check dead
         if (_lives <= 0) 
         {
+            _spawnManager.OnPlayerDead();
             Destroy(this.gameObject);
         }
     }
