@@ -19,8 +19,12 @@ public class Player : MonoBehaviour
     [SerializeField] 
     private float _fireRate = 0.5f;
     private bool _canShoot = true;
+    [SerializeField]
+    private bool isTripleShotActive = false;
     [SerializeField] 
     private GameObject _laserPrefab;
+    [SerializeField] 
+    private GameObject _tripleShotPrefab;
     // GameObject references 
     private SpawnManager _spawnManager;
 
@@ -88,13 +92,20 @@ public class Player : MonoBehaviour
     }
 
     void Shoot()
-    {
-        // Shooting a laser
+    {    
+        if (isTripleShotActive) 
+        {
+            Instantiate(_tripleShotPrefab, transform.position, Quaternion.identity);
+        } else 
+        {
+            // Shooting a laser
             Vector3 laserStartPosition = new Vector3(transform.position.x, transform.position.y + _laserOffset, 0f);
             Instantiate(_laserPrefab, laserStartPosition , Quaternion.identity);
+        }
 
-            // Calling cooldown function
-            StartCoroutine(ActiveCooldown());
+
+        // Calling cooldown function
+        StartCoroutine(ActiveCooldown());
     }
 
     public void Damage()
