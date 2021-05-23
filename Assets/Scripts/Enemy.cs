@@ -38,6 +38,8 @@ public class Enemy : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Player player = other.transform.GetComponent<Player>();
+            //SpriteRenderer playerSP = other.GetComponent<SpriteRenderer>();
+            //playerSP.color = Color.red;
 
             if (player != null)
             {
