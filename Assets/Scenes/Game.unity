@@ -155,7 +155,7 @@ MonoBehaviour:
   _enemyPrefab: {fileID: 6484963360147526563, guid: 3cf416b3aa44545f9918d6e1aa5813fb, type: 3}
   _startYPosition: 8
   _xRange: 11
-  _spawnDelay: 5
+  _spawnDelay: 3
   _stopSpawn: 0
 --- !u!4 &65725441
 Transform:

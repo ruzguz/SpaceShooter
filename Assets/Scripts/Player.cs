@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
     private GameObject _laserPrefab;
     [SerializeField] 
     private GameObject _tripleShotPrefab;
+    private float _tripleShotDuration = 5f;
     // GameObject references 
     private SpawnManager _spawnManager;
 
@@ -63,6 +64,18 @@ public class Player : MonoBehaviour
         _canShoot = false;
         yield return new WaitForSeconds(_fireRate);
         _canShoot = true;
+    }
+
+    public void ActiveTripleShot()
+    {
+        _isTripleShotActive = true;
+        StartCoroutine(TripleShotCooldown());
+    }
+
+    IEnumerator TripleShotCooldown()
+    {
+        yield return new WaitForSeconds(_tripleShotDuration);
+        _isTripleShotActive = false;
     }
 
     void CalculateMovement() 
@@ -105,7 +118,7 @@ public class Player : MonoBehaviour
             laser = Instantiate(_laserPrefab, laserStartPosition , Quaternion.identity);
         }
 
-        laser.transform.parent = this.transform;
+        //laser.transform.parent = this.transform;
         // Calling cooldown function
         StartCoroutine(ActiveCooldown());
     }

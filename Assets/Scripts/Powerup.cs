@@ -34,7 +34,9 @@ public class Powerup : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            // Active Triple Shot
+            Player player = other.gameObject.GetComponent<Player>();
+
+            player.ActiveTripleShot();
             Destroy(gameObject);
         }
     }
