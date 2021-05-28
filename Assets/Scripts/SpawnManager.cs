@@ -4,21 +4,27 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject _enemyPrefab;
+    
     [SerializeField]
     private float _startYPosition = 8f;
     [SerializeField]
     private float _xRange = 11f;
     [SerializeField]
-    private float _spawnDelay = 5f;
+    private GameObject _enemyPrefab;
+    [SerializeField]
+    private float _spawnEnemyDelay = 5f;
+    [SerializeField]
+    private GameObject _tripleShotPowerupPrefab;
+    [SerializeField]
+    private float _spawnTripleShotPowerupDelay = 7f;
     [SerializeField]
     private bool _stopSpawn = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(SpawnRoutine());
+        StartCoroutine(SpawnEnemyRoutine());
+        StartCoroutine(SpawnTripleShotPowerupRoutine());
     }
 
     // Update is called once per frame
@@ -27,7 +33,7 @@ public class SpawnManager : MonoBehaviour
         
     }
 
-    IEnumerator SpawnRoutine()
+    IEnumerator SpawnEnemyRoutine()
     {
         while(_stopSpawn == false)
         {
@@ -38,7 +44,22 @@ public class SpawnManager : MonoBehaviour
             // Spawning enemy and wait 5 seconds
             GameObject newEnemy = Instantiate(_enemyPrefab, randomPosition, Quaternion.identity);
             newEnemy.transform.parent = this.transform;
-            yield return new WaitForSeconds(_spawnDelay);
+            yield return new WaitForSeconds(_spawnEnemyDelay);
+        }
+    }
+
+    IEnumerator SpawnTripleShotPowerupRoutine()
+    {
+        while (_stopSpawn == false) 
+        {
+            // Calculating random position
+            float randomXPosition = Random.Range(-11f, 11f);
+            Vector3 RandomPosition = new Vector3(randomXPosition, 8f, transform.position.z);
+
+            // Spaning triple shot powerup
+            GameObject newPowerup = Instantiate(_tripleShotPowerupPrefab, RandomPosition, Quaternion.identity);
+            newPowerup.transform.parent = this.transform;
+            yield return new WaitForSeconds(_spawnTripleShotPowerupDelay);
         }
     }
 

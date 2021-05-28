@@ -152,10 +152,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fb0b825d3c194a58bbcdb21c5468a4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyPrefab: {fileID: 6484963360147526563, guid: 3cf416b3aa44545f9918d6e1aa5813fb, type: 3}
   _startYPosition: 8
   _xRange: 11
-  _spawnDelay: 3
+  _enemyPrefab: {fileID: 6484963360147526563, guid: 3cf416b3aa44545f9918d6e1aa5813fb, type: 3}
+  _spawnEnemyDelay: 5
+  _tripleShotPowerupPrefab: {fileID: 2816862247027261623, guid: f219cfb83dda2427eb26431e9a01ad85, type: 3}
+  _spawnTripleShotPowerupDelay: 7
   _stopSpawn: 0
 --- !u!4 &65725441
 Transform:
