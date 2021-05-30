@@ -33,17 +33,21 @@ public class Powerup : MonoBehaviour
             Player player = other.gameObject.GetComponent<Player>();
             if (player != null) 
             {
-                if (powerupID == 0) 
+                switch(powerupID)
                 {
-                    player.ActiveTripleShot();
-                } else if (powerupID == 1) 
-                {
-                    Debug.Log("Speed boost collected");
-                } else if (powerupID ==  2) 
-                {
-                    Debug.Log("Shield Collected");
+                    case 0:
+                        player.ActiveTripleShot();
+                        break;
+                    case 1:
+                        Debug.Log("Active Speed Boost");
+                        break;
+                    case 2:
+                        Debug.Log("Active Shield");
+                        break;
+                    default:
+                        Debug.Log("Invalid Powerup");
+                        break;
                 }
-
             }
             Destroy(gameObject);
         }
