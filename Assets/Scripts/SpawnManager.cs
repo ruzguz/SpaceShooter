@@ -27,12 +27,6 @@ public class SpawnManager : MonoBehaviour
         StartCoroutine(SpawnTripleShotPowerupRoutine());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     IEnumerator SpawnEnemyRoutine()
     {
         while(_stopSpawn == false)

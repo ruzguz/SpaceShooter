@@ -10,14 +10,6 @@ public class Enemy : MonoBehaviour
     private float _respawnYPosition = 8f;
     private float _bottomLimit = -5.5f;
     private float _horizontalLimit = 9.5f;
-    
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
