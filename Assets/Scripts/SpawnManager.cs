@@ -14,7 +14,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private float _spawnEnemyDelay = 5f;
     [SerializeField]
-    private GameObject _tripleShotPowerupPrefab;
+    private GameObject[] _powerups;
     [SerializeField]
     private float _spawnTripleShotPowerupDelay = 7f;
     [SerializeField]
@@ -51,7 +51,8 @@ public class SpawnManager : MonoBehaviour
             Vector3 RandomPosition = new Vector3(randomXPosition, 8f, transform.position.z);
 
             // Spaning triple shot powerup
-            GameObject newPowerup = Instantiate(_tripleShotPowerupPrefab, RandomPosition, Quaternion.identity);
+            int randomPowerup = Random.Range(0,2);
+            GameObject newPowerup = Instantiate(_powerups[randomPowerup], RandomPosition, Quaternion.identity);
             newPowerup.transform.parent = this.transform;
             yield return new WaitForSeconds(_spawnTripleShotPowerupDelay);
         }
