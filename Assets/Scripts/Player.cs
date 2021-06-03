@@ -34,6 +34,8 @@ public class Player : MonoBehaviour
     private float _speedBoost = 8.5f;
     // GameObject references 
     private SpawnManager _spawnManager;
+    [SerializeField]
+    private GameObject _playerShield;
 
 
     // Start is called before the first frame update
@@ -94,6 +96,11 @@ public class Player : MonoBehaviour
         _speed = _speedBoost;
         yield return new WaitForSeconds(_speedBoostDuration);
         _speed = _normalSpeed;
+    }
+
+    public void ActivateShield()
+    {
+        _playerShield.SetActive(true);
     }
 
     void CalculateMovement() 

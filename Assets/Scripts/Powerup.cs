@@ -42,7 +42,7 @@ public class Powerup : MonoBehaviour
                         player.ActivateSpeedBoost();
                         break;
                     case 2:
-                        Debug.Log("Active Shield");
+                        player.ActivateShield();
                         break;
                     default:
                         Debug.Log("Invalid Powerup");
