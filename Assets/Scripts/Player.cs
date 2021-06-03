@@ -10,7 +10,9 @@ public class Player : MonoBehaviour
     private int _lives = 3;
     // Movement variables
     [SerializeField] 
-    private float _speed = 2.5f;
+    private float _normalSpeed = 5f;
+    [SerializeField]
+    private float _speed = 5f;
     private float _xLimit = 11.5f;
     private float _minY = -3, _maxY = 0;
     // Shooting variables 
@@ -26,6 +28,10 @@ public class Player : MonoBehaviour
     [SerializeField] 
     private GameObject _tripleShotPrefab;
     private float _tripleShotDuration = 5f;
+    [SerializeField]
+    private float _speedBoostDuration = 5f;
+    [SerializeField]
+    private float _speedBoost = 8.5f;
     // GameObject references 
     private SpawnManager _spawnManager;
 
@@ -76,6 +82,18 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(_tripleShotDuration);
         _isTripleShotActive = false;
+    }
+
+    public void ActivateSpeedBoost()
+    {
+        StartCoroutine(SpeedBoostCooldown());
+    }
+    
+    IEnumerator SpeedBoostCooldown()
+    {
+        _speed = _speedBoost;
+        yield return new WaitForSeconds(_speedBoostDuration);
+        _speed = _normalSpeed;
     }
 
     void CalculateMovement() 

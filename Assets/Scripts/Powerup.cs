@@ -8,7 +8,7 @@ public class Powerup : MonoBehaviour
     [SerializeField]
     private float _speed = 3f;
     [SerializeField]
-    private int powerupID;
+    private int powerupID; // 0 = Triple Shot, 1 = Speed Boost, 2 = Shield, 3 = Magnetic Bomb
 
     // Update is called once per frame.
     void Update()
@@ -39,7 +39,7 @@ public class Powerup : MonoBehaviour
                         player.ActiveTripleShot();
                         break;
                     case 1:
-                        Debug.Log("Active Speed Boost");
+                        player.ActivateSpeedBoost();
                         break;
                     case 2:
                         Debug.Log("Active Shield");
