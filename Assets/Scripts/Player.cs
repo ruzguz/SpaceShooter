@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
     private Vector3 startingPosition = new Vector3(0,-3,0);
     [SerializeField]
     private int _lives = 3;
+    [SerializeField]
+    private int _score;
     // Movement variables
     [SerializeField] 
     private float _normalSpeed = 5f;
@@ -21,6 +23,7 @@ public class Player : MonoBehaviour
     [SerializeField] 
     private float _fireRate = 0.5f;
     private bool _canShoot = true;
+    // Powerup variables
     [SerializeField]
     private bool _isTripleShotActive = false;
     [SerializeField] 
@@ -36,6 +39,7 @@ public class Player : MonoBehaviour
     private SpawnManager _spawnManager;
     [SerializeField]
     private GameObject _playerShield;
+
 
 
     // Start is called before the first frame update
@@ -158,6 +162,12 @@ public class Player : MonoBehaviour
             _spawnManager.OnPlayerDead();
             Destroy(this.gameObject);
         }
+    }
+
+    public void UpdateScore(int score)
+    {
+        _score += score;
+        GameObject.Find("UI_Manager").GetComponent<UIManager>().UpdateScore(_score);
     }
 }
 

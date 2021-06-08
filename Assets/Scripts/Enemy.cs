@@ -25,16 +25,13 @@ public class Enemy : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        
+
         // Collision with player
         if (other.CompareTag("Player"))
         {
             Player player = other.transform.GetComponent<Player>();
-            //SpriteRenderer playerSP = other.GetComponent<SpriteRenderer>();
-            //playerSP.color = Color.red;
 
-            if (player != null)
-            {
+            if (player != null) {
                 player.Damage();
                 Destroy(this.gameObject);
             }
@@ -44,6 +41,7 @@ public class Enemy : MonoBehaviour
         if (other.CompareTag("Laser"))
         {
             Destroy(other.gameObject);
+            GameObject.Find("Player").GetComponent<Player>().UpdateScore(10);
             Destroy(this.gameObject);
 
         }
