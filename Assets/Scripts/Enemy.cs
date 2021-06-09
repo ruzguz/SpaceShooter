@@ -10,6 +10,12 @@ public class Enemy : MonoBehaviour
     private float _respawnYPosition = 8f;
     private float _bottomLimit = -5.5f;
     private float _horizontalLimit = 9.5f;
+    // References
+    Player _player;
+
+    void Start() {
+        _player = GameObject.Find("Player").GetComponent<Player>();    
+    }
 
     // Update is called once per frame
     void Update()
@@ -41,7 +47,7 @@ public class Enemy : MonoBehaviour
         if (other.CompareTag("Laser"))
         {
             Destroy(other.gameObject);
-            GameObject.Find("Player").GetComponent<Player>().UpdateScore(10);
+            _player.UpdateScore(10);
             Destroy(this.gameObject);
 
         }

@@ -39,6 +39,7 @@ public class Player : MonoBehaviour
     private SpawnManager _spawnManager;
     [SerializeField]
     private GameObject _playerShield;
+    private UIManager _uiManager;
 
 
 
@@ -49,10 +50,16 @@ public class Player : MonoBehaviour
         transform.position = startingPosition;
 
         _spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
+        _uiManager = GameObject.Find("UI_Manager").GetComponent<UIManager>();
 
         if (_spawnManager == null) 
         {
             Debug.LogError("Spawn Manager is NULL");
+        }
+
+        if (_uiManager == null) 
+        {
+            Debug.LogError("UIManager is NULL");
         }
         
     }
@@ -167,7 +174,7 @@ public class Player : MonoBehaviour
     public void UpdateScore(int score)
     {
         _score += score;
-        GameObject.Find("UI_Manager").GetComponent<UIManager>().UpdateScore(_score);
+        _uiManager.UpdateScore(_score);
     }
 }
 
