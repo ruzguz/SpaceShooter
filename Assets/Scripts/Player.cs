@@ -162,6 +162,7 @@ public class Player : MonoBehaviour
     public void Damage()
     {
         _lives--;
+        _uiManager.UpdateLives(_lives);
 
         // Check dead
         if (_lives <= 0) 
