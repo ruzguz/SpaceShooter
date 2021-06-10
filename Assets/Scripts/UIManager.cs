@@ -11,6 +11,8 @@ public class UIManager : MonoBehaviour
     private Sprite[] _liveSprites;
     [SerializeField]
     private Image _livesImage;
+    [SerializeField]
+    private Text _gameOverText;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +28,11 @@ public class UIManager : MonoBehaviour
     public void UpdateLives(int currentLives)
     {
         _livesImage.sprite = _liveSprites[currentLives];
+    }
+
+    public void ShowGameOverScreen()
+    {
+        _gameOverText.gameObject.SetActive(true);
     }
 
 }
