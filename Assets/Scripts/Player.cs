@@ -40,6 +40,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject _playerShield;
     private UIManager _uiManager;
+    [SerializeField]
+    private GameManager _gameManager;
 
 
 
@@ -169,6 +171,7 @@ public class Player : MonoBehaviour
         {
             _spawnManager.OnPlayerDead();
             _uiManager.ShowGameOverScreen();
+            _gameManager.FinishGame();
             Destroy(this.gameObject);
         }
     }

@@ -8,6 +8,8 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Text _scoreText;
     [SerializeField]
+    private Text _resetGameText;
+    [SerializeField]
     private Sprite[] _liveSprites;
     [SerializeField]
     private Image _livesImage;
@@ -20,6 +22,7 @@ public class UIManager : MonoBehaviour
     {
         _scoreText.text = "Score: 0";
         _gameOverText.gameObject.SetActive(false);
+        _resetGameText.gameObject.SetActive(false);
     }
 
     public void UpdateScore(int score)
@@ -35,6 +38,7 @@ public class UIManager : MonoBehaviour
     public void ShowGameOverScreen()
     {    
         StartCoroutine(FlikerGameOverText());
+        _resetGameText.gameObject.SetActive(true);
     }
 
     IEnumerator FlikerGameOverText()
