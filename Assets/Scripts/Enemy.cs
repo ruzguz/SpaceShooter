@@ -53,8 +53,7 @@ public class Enemy : MonoBehaviour
 
             if (player != null) {
                 player.Damage();
-                _enemyAnim.SetTrigger("OnEnemyDeath");
-                Destroy(this.gameObject, 3f);
+                this.Explode();
             }
         }
 
@@ -63,9 +62,21 @@ public class Enemy : MonoBehaviour
         {
             Destroy(other.gameObject);
             _player.UpdateScore(10);
-            _enemyAnim.SetTrigger("OnEnemyDeath");
-            _speed = 0;
-            Destroy(this.gameObject, 3f);
+            this.Explode();
         }
+
+        if (other.CompareTag("Shield")) 
+        {
+            other.gameObject.SetActive(false);
+            _player.UpdateScore(10);
+            this.Explode();
+        }
+    }
+
+    void Explode()
+    {
+        _enemyAnim.SetTrigger("OnEnemyDeath");
+        _speed = 0;
+        Destroy(this.gameObject, 3f);
     }
 }
