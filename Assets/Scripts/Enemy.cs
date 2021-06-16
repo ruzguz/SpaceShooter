@@ -12,9 +12,23 @@ public class Enemy : MonoBehaviour
     private float _horizontalLimit = 9.5f;
     // References
     Player _player;
+    private Animator _enemyAnim;
 
     void Start() {
-        _player = GameObject.Find("Player").GetComponent<Player>();    
+
+        _player = GameObject.Find("Player").GetComponent<Player>();
+        
+        if (_player == null) 
+        {
+            Debug.Log("Enemy Script: Player is null");
+        }    
+
+        _enemyAnim = this.GetComponent<Animator>();
+        
+        if (_enemyAnim == null) 
+        {
+            Debug.Log("Enemy Script: Enemy Animator is null");
+        }
     }
 
     // Update is called once per frame
@@ -39,7 +53,8 @@ public class Enemy : MonoBehaviour
 
             if (player != null) {
                 player.Damage();
-                Destroy(this.gameObject);
+                _enemyAnim.SetTrigger("OnEnemyDeath");
+                Destroy(this.gameObject, 3f);
             }
         }
 
@@ -48,8 +63,9 @@ public class Enemy : MonoBehaviour
         {
             Destroy(other.gameObject);
             _player.UpdateScore(10);
-            Destroy(this.gameObject);
-
+            _enemyAnim.SetTrigger("OnEnemyDeath");
+            _speed = 0;
+            Destroy(this.gameObject, 3f);
         }
     }
 }
