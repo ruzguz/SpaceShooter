@@ -1290,13 +1290,9 @@ PrefabInstance:
       value: Asteroid
       objectReference: {fileID: 0}
     - target: {fileID: 4275885007127037204, guid: 9333acf3884f8461c801e4c60f00c22b, type: 3}
-      propertyPath: _rotationSpeed
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 4500493289843995462, guid: 9333acf3884f8461c801e4c60f00c22b, type: 3}
-      propertyPath: m_GravityScale
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: _explosionPrefab
+      value: 
+      objectReference: {fileID: 1278051787032070700, guid: 4ec8f30b8c66046d2b886b2ccf63587e, type: 3}
     - target: {fileID: 7293006015191213914, guid: 9333acf3884f8461c801e4c60f00c22b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
