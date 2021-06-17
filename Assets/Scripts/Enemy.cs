@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
     // References
     Player _player;
     private Animator _enemyAnim;
+    private BoxCollider2D _enemyCollider;
 
     void Start() {
 
@@ -20,14 +21,21 @@ public class Enemy : MonoBehaviour
         
         if (_player == null) 
         {
-            Debug.Log("Enemy Script: Player is null");
+            Debug.LogError("Enemy Script: Player is null");
         }    
 
         _enemyAnim = this.GetComponent<Animator>();
         
         if (_enemyAnim == null) 
         {
-            Debug.Log("Enemy Script: Enemy Animator is null");
+            Debug.LogError("Enemy Script: Enemy Animator is null");
+        }
+
+        _enemyCollider = GetComponent<BoxCollider2D>();
+
+        if (_enemyCollider == null) 
+        {
+            Debug.LogError("Enemy Script: Collider is null");
         }
     }
 
@@ -77,6 +85,7 @@ public class Enemy : MonoBehaviour
     {
         _enemyAnim.SetTrigger("OnEnemyDeath");
         _speed = 0;
+        _enemyCollider.enabled = false;
         Destroy(this.gameObject, 3f);
     }
 }
