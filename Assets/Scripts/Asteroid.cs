@@ -9,11 +9,12 @@ public class Asteroid : MonoBehaviour
     private float _rotationSpeed = 4f;
     [SerializeField]
     private GameObject _explosionPrefab;
+    private SpawnManager _spawnManager;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        _spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
     }
 
     // Update is called once per frame
@@ -28,6 +29,7 @@ public class Asteroid : MonoBehaviour
         {   
             GameObject astroid = Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
             Destroy(other.gameObject);
+            _spawnManager.StartSpawning();
             Destroy(this.gameObject, 0.25f);
         }    
     }

@@ -23,12 +23,18 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+    }
+
+    public void StartSpawning()
+    {
         StartCoroutine(SpawnEnemyRoutine());
-        StartCoroutine(SpawnTripleShotPowerupRoutine());
+        StartCoroutine(SpawnPowerupRoutine());
     }
 
     IEnumerator SpawnEnemyRoutine()
     {
+        yield return new WaitForSeconds(2f);
         while(_stopSpawn == false)
         {
             // Calculating random position
@@ -42,8 +48,9 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    IEnumerator SpawnTripleShotPowerupRoutine()
+    IEnumerator SpawnPowerupRoutine()
     {
+        yield return new WaitForSeconds(2f);
         while (_stopSpawn == false) 
         {
             // Calculating random position
