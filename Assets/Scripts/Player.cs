@@ -42,6 +42,10 @@ public class Player : MonoBehaviour
     private UIManager _uiManager;
     [SerializeField]
     private GameManager _gameManager;
+    [SerializeField]
+    private GameObject _rightEngine;
+    [SerializeField]
+    private GameObject _leftEngine;
 
 
 
@@ -165,6 +169,14 @@ public class Player : MonoBehaviour
     {
         _lives--;
         _uiManager.UpdateLives(_lives);
+
+        if (_lives == 2) 
+        {
+            _rightEngine.SetActive(true);
+        } else if (_lives == 1) 
+        {
+            _leftEngine.SetActive(true);
+        }
 
         // Check dead
         if (_lives <= 0) 
