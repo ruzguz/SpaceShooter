@@ -626,6 +626,7 @@ MonoBehaviour:
   _gameManager: {fileID: 2086385181}
   _rightEngine: {fileID: 1913827942}
   _leftEngine: {fileID: 1670122602}
+  _gamePostProcess: {fileID: 997509908}
 --- !u!212 &848867534
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -813,6 +814,7 @@ GameObject:
   m_Component:
   - component: {fileID: 997509907}
   - component: {fileID: 997509906}
+  - component: {fileID: 997509908}
   m_Layer: 8
   m_Name: Post_Process_Volume
   m_TagString: Untagged
@@ -851,6 +853,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &997509908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 997509905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a66f4e7973a2a4757944f6929fd7087c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gamePostProcessVolume: {fileID: 997509906}
 --- !u!1 &1004344903
 GameObject:
   m_ObjectHideFlags: 0

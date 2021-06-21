@@ -46,6 +46,8 @@ public class Player : MonoBehaviour
     private GameObject _rightEngine;
     [SerializeField]
     private GameObject _leftEngine;
+    [SerializeField]
+    private PostProcessing _gamePostProcess;
 
 
 
@@ -74,8 +76,6 @@ public class Player : MonoBehaviour
     void Update()
     {
         CalculateMovement();
-
-        
         
         if (Input.GetKeyDown(KeyCode.Space) && _canShoot)
         {
@@ -111,8 +111,10 @@ public class Player : MonoBehaviour
     IEnumerator SpeedBoostCooldown()
     {
         _speed = _speedBoost;
+        _gamePostProcess.SetSpeedEffect(1f);
         yield return new WaitForSeconds(_speedBoostDuration);
         _speed = _normalSpeed;
+        _gamePostProcess.SetSpeedEffect(0f);
     }
 
     public void ActivateShield()
