@@ -17,6 +17,7 @@ public class UIManager : MonoBehaviour
     private Text _gameOverText;
     [SerializeField]
     private float _flikerDelay = 0.5f;
+
     // Start is called before the first frame update
     void Start()
     {
