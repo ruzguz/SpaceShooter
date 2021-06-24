@@ -162,7 +162,6 @@ public class Player : MonoBehaviour
             laser = Instantiate(_laserPrefab, laserStartPosition , Quaternion.identity);
         }
 
-        //laser.transform.parent = this.transform;
         // Calling cooldown function
         StartCoroutine(ActiveCooldown());
     }
