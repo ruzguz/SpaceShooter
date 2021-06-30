@@ -14,6 +14,8 @@ public class Enemy : MonoBehaviour
     Player _player;
     private Animator _enemyAnim;
     private BoxCollider2D _enemyCollider;
+    [SerializeField]
+    private AudioSource _explosionAudio;
 
     void Start() {
 
@@ -37,6 +39,8 @@ public class Enemy : MonoBehaviour
         {
             Debug.LogError("Enemy Script: Collider is null");
         }
+
+        _explosionAudio = GameObject.Find("Explosion").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -83,6 +87,7 @@ public class Enemy : MonoBehaviour
 
     void Explode()
     {
+        _explosionAudio.Play();
         _enemyAnim.SetTrigger("OnEnemyDeath");
         _speed = 0;
         _enemyCollider.enabled = false;

@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 4
+  _explosionAudio: {fileID: 0}
 --- !u!50 &3274370687866388468
 Rigidbody2D:
   serializedVersion: 4
