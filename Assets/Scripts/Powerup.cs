@@ -31,6 +31,7 @@ public class Powerup : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Player player = other.gameObject.GetComponent<Player>();
+            player.PlayPowerupAudio();
             if (player != null) 
             {
                 switch(powerupID)

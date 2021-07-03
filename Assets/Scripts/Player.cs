@@ -48,6 +48,8 @@ public class Player : MonoBehaviour
     private GameObject _leftEngine;
     [SerializeField]
     private PostProcessing _gamePostProcess;
+    [SerializeField]
+    private AudioSource _powerupAudio;
 
 
 
@@ -193,6 +195,11 @@ public class Player : MonoBehaviour
     {
         _score += score;
         _uiManager.UpdateScore(_score);
+    }
+
+    public void PlayPowerupAudio()
+    {
+        _powerupAudio.Play();
     }
 }
 
