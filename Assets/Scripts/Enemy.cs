@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour
     private GameObject _laserPrefab;
     [SerializeField]
     private Transform[] _cannonPositions; // 0 = left cannon, 1 = right cannon
+    private IEnumerator _shootLaserRoutine;
 
     void Start() {
 
@@ -45,7 +46,8 @@ public class Enemy : MonoBehaviour
         }
 
         _explosionAudio = GameObject.Find("Explosion").GetComponent<AudioSource>();
-        StartCoroutine(ShootLaserRoutine());
+        _shootLaserRoutine = ShootLaserRoutine();
+        StartCoroutine(_shootLaserRoutine);
     }
 
     // Update is called once per frame
@@ -95,14 +97,16 @@ public class Enemy : MonoBehaviour
         while(true)
         {
             int index = Random.Range(0,2);
-            Instantiate(_laserPrefab, _cannonPositions[index].position, Quaternion.identity);
+            GameObject laser = Instantiate(_laserPrefab, _cannonPositions[index].position, Quaternion.identity);
+            laser.transform.parent = transform;
             Debug.Log(index);
-            yield return new WaitForSeconds(Random.Range(1f,3f));            
+            yield return new WaitForSeconds(Random.Range(3f,5f));            
         }
     }
 
     void Explode()
     {
+        StopCoroutine(_shootLaserRoutine);
         _explosionAudio.Play();
         _enemyAnim.SetTrigger("OnEnemyDeath");
         _speed = 0;

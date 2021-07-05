@@ -50,6 +50,8 @@ public class Player : MonoBehaviour
     private PostProcessing _gamePostProcess;
     [SerializeField]
     private AudioSource _powerupAudio;
+    [SerializeField]
+    private AudioSource _damageAudio;
 
 
 
@@ -172,6 +174,7 @@ public class Player : MonoBehaviour
     {
         _lives--;
         _uiManager.UpdateLives(_lives);
+        _damageAudio.Play();
 
         if (_lives == 2) 
         {
@@ -200,6 +203,14 @@ public class Player : MonoBehaviour
     public void PlayPowerupAudio()
     {
         _powerupAudio.Play();
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) 
+    {
+        if (other.CompareTag("Enemy Laser")) 
+        {
+            Damage();
+        }
     }
 }
 
