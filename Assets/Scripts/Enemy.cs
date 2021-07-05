@@ -16,6 +16,10 @@ public class Enemy : MonoBehaviour
     private BoxCollider2D _enemyCollider;
     [SerializeField]
     private AudioSource _explosionAudio;
+    [SerializeField]
+    private GameObject _laserPrefab;
+    [SerializeField]
+    private Transform[] _cannonPositions; // 0 = left cannon, 1 = right cannon
 
     void Start() {
 
@@ -41,6 +45,7 @@ public class Enemy : MonoBehaviour
         }
 
         _explosionAudio = GameObject.Find("Explosion").GetComponent<AudioSource>();
+        StartCoroutine(ShootLaserRoutine());
     }
 
     // Update is called once per frame
@@ -82,6 +87,17 @@ public class Enemy : MonoBehaviour
             other.gameObject.SetActive(false);
             _player.UpdateScore(10);
             this.Explode();
+        }
+    }
+
+    IEnumerator ShootLaserRoutine() 
+    {
+        while(true)
+        {
+            int index = Random.Range(0,2);
+            Instantiate(_laserPrefab, _cannonPositions[index].position, Quaternion.identity);
+            Debug.Log(index);
+            yield return new WaitForSeconds(Random.Range(1f,3f));            
         }
     }
 
