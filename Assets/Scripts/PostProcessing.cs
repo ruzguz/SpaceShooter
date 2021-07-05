@@ -25,7 +25,7 @@ public class PostProcessing : MonoBehaviour
 
     public void SetSpeedEffect(float value)
     {
-        // 1 = active, 0 = deactive
+        // 0.5 = active, 0 = deactive
         _speedEffect.intensity.value = value;
     }
 }
