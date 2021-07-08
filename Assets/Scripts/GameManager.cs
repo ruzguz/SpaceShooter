@@ -22,6 +22,11 @@ public class GameManager : MonoBehaviour
         {
             ResetGame();
         }
+
+        if (Input.GetKey(KeyCode.Escape)) 
+        {
+            Application.Quit();
+        }
     }
 
     public void FinishGame()
