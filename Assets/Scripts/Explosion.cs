@@ -10,8 +10,6 @@ public class Explosion : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _explosionAudioSource = GetComponent<AudioSource>();
-        _explosionAudioSource.Play();
         Destroy(this.gameObject, 3f);
     }
 
