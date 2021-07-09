@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
     private float _normalSpeed = 5f;
     [SerializeField]
     private float _speed = 5f;
+    [SerializeField]
+    private float _extraSpeed = 0f;
     private float _xLimit = 11.5f;
     private float _minY = -3, _maxY = 0;
     // Shooting variables 
@@ -52,6 +54,8 @@ public class Player : MonoBehaviour
     private AudioSource _powerupAudio;
     [SerializeField]
     private AudioSource _damageAudio;
+    [SerializeField]
+    private GameObject _thruster;
 
 
 
@@ -79,6 +83,24 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        // If player press left Key 
+        // Then change speed value
+        if (Input.GetKeyDown(KeyCode.LeftShift)) 
+        {
+            _thruster.SetActive(true);
+            _extraSpeed = 3f;
+        }
+
+        // If player releases the shift key
+        // Then set speed to normal
+        if (Input.GetKeyUp(KeyCode.LeftShift)) 
+        {
+            _thruster.SetActive(false);
+            _extraSpeed = 0f;
+        }
+
+
         CalculateMovement();
         
         if (Input.GetKeyDown(KeyCode.Space) && _canShoot)
@@ -133,7 +155,7 @@ public class Player : MonoBehaviour
         float verticalInput = Input.GetAxis("Vertical");
         
         // Translate player
-        transform.Translate(new Vector3(horizontalInput, verticalInput, 0) * _speed * Time.deltaTime);
+        transform.Translate(new Vector3(horizontalInput, verticalInput, 0) * (_speed + _extraSpeed) * Time.deltaTime);
 
         // Vertical bounds
         if (transform.position.y <= _minY) 

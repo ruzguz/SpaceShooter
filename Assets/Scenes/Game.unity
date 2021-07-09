@@ -1043,6 +1043,7 @@ MonoBehaviour:
   _gamePostProcess: {fileID: 997509908}
   _powerupAudio: {fileID: 818923799}
   _damageAudio: {fileID: 1660859281}
+  _thruster: {fileID: 1660424601}
 --- !u!212 &848867534
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1589,7 +1590,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1660424602
 Transform:
   m_ObjectHideFlags: 0
