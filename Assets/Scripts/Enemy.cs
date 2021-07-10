@@ -86,7 +86,7 @@ public class Enemy : MonoBehaviour
 
         if (other.CompareTag("Shield")) 
         {
-            other.gameObject.SetActive(false);
+            other.GetComponent<Shield>().Damage();
             _player.UpdateScore(10);
             this.Explode();
         }

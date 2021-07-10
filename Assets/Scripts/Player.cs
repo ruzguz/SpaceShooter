@@ -56,6 +56,9 @@ public class Player : MonoBehaviour
     private AudioSource _damageAudio;
     [SerializeField]
     private GameObject _thruster;
+    [SerializeField]
+    private GameObject _shieldPrefab;
+    private GameObject _shield;
 
 
 
@@ -145,7 +148,15 @@ public class Player : MonoBehaviour
 
     public void ActivateShield()
     {
-        _playerShield.SetActive(true);
+        if (_shield != null) 
+        {
+            Destroy(_shield);
+        }
+
+        GameObject shield = Instantiate(_shieldPrefab, transform.position, Quaternion.identity);
+        shield.transform.parent = transform;
+        _shield = shield; 
+
     }
 
     void CalculateMovement() 
@@ -231,6 +242,7 @@ public class Player : MonoBehaviour
     {
         if (other.CompareTag("Enemy Laser")) 
         {
+            Destroy(other.gameObject);
             Damage();
         }
     }
