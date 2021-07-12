@@ -25,6 +25,8 @@ public class Player : MonoBehaviour
     [SerializeField] 
     private float _fireRate = 0.5f;
     private bool _canShoot = true;
+    [SerializeField]
+    private int _ammo = 15;
     // Powerup variables
     [SerializeField]
     private bool _isTripleShotActive = false;
@@ -59,6 +61,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject _shieldPrefab;
     private GameObject _shield;
+    [SerializeField]
+    private AudioSource _outOfAmmoAudio;
 
 
 
@@ -187,16 +191,20 @@ public class Player : MonoBehaviour
 
     void Shoot()
     {    
-
         GameObject laser;
         if (_isTripleShotActive) 
         {
             laser = Instantiate(_tripleShotPrefab, transform.position, Quaternion.identity);
-        } else 
+        } else if (_ammo > 0)
         {
+            _ammo--;
+            _uiManager.UpdateAmmo(_ammo);
             // Shooting a laser
             Vector3 laserStartPosition = new Vector3(transform.position.x, transform.position.y + _laserOffset, 0f);
             laser = Instantiate(_laserPrefab, laserStartPosition , Quaternion.identity);
+        } else 
+        {
+            _outOfAmmoAudio.Play();
         }
 
         // Calling cooldown function

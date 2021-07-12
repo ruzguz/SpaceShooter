@@ -17,6 +17,8 @@ public class UIManager : MonoBehaviour
     private Text _gameOverText;
     [SerializeField]
     private float _flikerDelay = 0.5f;
+    [SerializeField]
+    private Text _ammoText;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +36,11 @@ public class UIManager : MonoBehaviour
     public void UpdateLives(int currentLives)
     {
         _livesImage.sprite = _liveSprites[currentLives];
+    }
+
+    public void UpdateAmmo(int ammo) 
+    {
+        _ammoText.text = "Ammo: " + ammo;
     }
 
     public void ShowGameOverScreen()
