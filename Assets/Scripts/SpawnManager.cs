@@ -58,7 +58,7 @@ public class SpawnManager : MonoBehaviour
             Vector3 RandomPosition = new Vector3(randomXPosition, 8f, transform.position.z);
 
             // Spaning triple shot powerup
-            int randomPowerup = Random.Range(0,3);
+            int randomPowerup = Random.Range(0,4);
             GameObject newPowerup = Instantiate(_powerups[randomPowerup], RandomPosition, Quaternion.identity);
             newPowerup.transform.parent = this.transform;
             yield return new WaitForSeconds(_spawnTripleShotPowerupDelay);

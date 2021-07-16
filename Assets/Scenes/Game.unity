@@ -197,6 +197,7 @@ MonoBehaviour:
   - {fileID: 2816862247027261623, guid: ac83bb8e4649f43198a0faeef0107542, type: 3}
   - {fileID: 333851498589357010, guid: a462ee4f278a948ccbafa4ef4ec15706, type: 3}
   - {fileID: 6856094545282522120, guid: e03ab3b344a5f453abf73b26b6cd4fa2, type: 3}
+  - {fileID: 869418263426402820, guid: 82f86ec6a31404695b16157681610325, type: 3}
   _spawnTripleShotPowerupDelay: 7
   _stopSpawn: 0
 --- !u!4 &65725441

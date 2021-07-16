@@ -163,6 +163,12 @@ public class Player : MonoBehaviour
 
     }
 
+    public void AddAmmo()
+    {
+        _ammo += 15;
+        _uiManager.UpdateAmmo(_ammo);
+    }
+
     void CalculateMovement() 
     {
         // Getting axis values

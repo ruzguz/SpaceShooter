@@ -25,7 +25,8 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Escape)) 
         {
-            Application.Quit();
+            //Application.Quit();
+            UnityEditor.EditorApplication.isPlaying = false;
         }
     }
 
