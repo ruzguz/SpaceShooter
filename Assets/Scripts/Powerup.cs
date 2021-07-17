@@ -8,7 +8,7 @@ public class Powerup : MonoBehaviour
     [SerializeField]
     private float _speed = 3f;
     [SerializeField]
-    private int powerupID; // 0 = Triple Shot, 1 = Speed Boost, 2 = Shield, 3 = Extra Ammo
+    private int powerupID; // 0 = Triple Shot, 1 = Speed Boost, 2 = Shield, 3 = Extra Ammo, 4 = Add Live
 
     // Update is called once per frame.
     void Update()
@@ -47,6 +47,9 @@ public class Powerup : MonoBehaviour
                         break;
                     case 3:
                         player.AddAmmo();
+                        break;
+                    case 4: 
+                        player.Heal();
                         break;
                     default:
                         Debug.Log("Invalid Powerup");

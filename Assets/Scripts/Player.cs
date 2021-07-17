@@ -217,19 +217,23 @@ public class Player : MonoBehaviour
         StartCoroutine(ActiveCooldown());
     }
 
+    public void Heal()
+    {
+        if (_lives < 3) 
+        {
+            _lives++;
+            _uiManager.UpdateLives(_lives);
+        }
+        DrawEngineDamage();
+    }
+
     public void Damage()
     {
         _lives--;
         _uiManager.UpdateLives(_lives);
         _damageAudio.Play();
 
-        if (_lives == 2) 
-        {
-            _rightEngine.SetActive(true);
-        } else if (_lives == 1) 
-        {
-            _leftEngine.SetActive(true);
-        }
+        DrawEngineDamage();
 
         // Check dead
         if (_lives <= 0) 
@@ -238,6 +242,24 @@ public class Player : MonoBehaviour
             _uiManager.ShowGameOverScreen();
             _gameManager.FinishGame();
             Destroy(this.gameObject);
+        }
+    }
+
+    void DrawEngineDamage()
+    {
+        if (_lives == 3) 
+        {
+            _rightEngine.SetActive(false);
+            _leftEngine.SetActive(false);
+        }
+        else if (_lives == 2) 
+        {
+            _rightEngine.SetActive(true);
+            _leftEngine.SetActive(false);
+        } else if (_lives == 1) 
+        {
+            _rightEngine.SetActive(true);
+            _leftEngine.SetActive(true);
         }
     }
 
