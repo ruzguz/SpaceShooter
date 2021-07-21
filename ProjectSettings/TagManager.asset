@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - Shield
   - Enemy Laser
+  - CombustionLaser
+  - Combustion
   layers:
   - Default
   - TransparentFX

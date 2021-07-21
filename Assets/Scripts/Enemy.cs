@@ -90,6 +90,19 @@ public class Enemy : MonoBehaviour
             _player.UpdateScore(10);
             this.Explode();
         }
+
+        if (other.CompareTag("Combustion"))
+        {
+            _player.UpdateScore(10);
+            this.Explode();
+        }
+
+        if (other.CompareTag("CombustionLaser")) 
+        {
+            other.GetComponent<CombustionLaser>().Explode();
+            _player.UpdateScore(10);
+            this.Explode();
+        }
     }
 
     IEnumerator ShootLaserRoutine() 

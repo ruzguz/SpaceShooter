@@ -63,6 +63,10 @@ public class Player : MonoBehaviour
     private GameObject _shield;
     [SerializeField]
     private AudioSource _outOfAmmoAudio;
+    [SerializeField]
+    private GameObject _combustionLaser;
+    [SerializeField]
+    private bool _isCombustionLaserActive = false;
 
 
 
@@ -127,6 +131,7 @@ public class Player : MonoBehaviour
     public void ActiveTripleShot()
     {
         _isTripleShotActive = true;
+        _isCombustionLaserActive = false;
         StartCoroutine(TripleShotCooldown());
     }
 
@@ -134,6 +139,19 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(_tripleShotDuration);
         _isTripleShotActive = false;
+    }
+
+    public void ActivateCombustionLaser()
+    {
+        _isCombustionLaserActive = true;
+        _isTripleShotActive = false;
+        StartCoroutine(CombustionLaserRoutine());
+    }
+
+    IEnumerator CombustionLaserRoutine()
+    {
+        yield return new WaitForSeconds(5f);
+        _isCombustionLaserActive = false;
     }
 
     public void ActivateSpeedBoost()
@@ -201,6 +219,9 @@ public class Player : MonoBehaviour
         if (_isTripleShotActive) 
         {
             laser = Instantiate(_tripleShotPrefab, transform.position, Quaternion.identity);
+        } else if (_isCombustionLaserActive)
+        {
+            laser = Instantiate(_combustionLaser, transform.position, Quaternion.identity);
         } else if (_ammo > 0)
         {
             _ammo--;

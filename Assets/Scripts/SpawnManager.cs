@@ -58,10 +58,22 @@ public class SpawnManager : MonoBehaviour
             Vector3 RandomPosition = new Vector3(randomXPosition, 8f, transform.position.z);
 
             // Spaning triple shot powerup
-            int randomPowerup = Random.Range(0,_powerups.Length);
+            int randomPowerup = Random.Range(0,_powerups.Length -1);
             GameObject newPowerup = Instantiate(_powerups[randomPowerup], RandomPosition, Quaternion.identity);
             newPowerup.transform.parent = this.transform;
             yield return new WaitForSeconds(_spawnTripleShotPowerupDelay);
+
+            // Spawn combustion laser rarely 
+            randomXPosition = Random.Range(-11f, 11f);
+            RandomPosition = new Vector3(randomXPosition, 8f, transform.position.z);
+
+            // if random number = 0 then spawn combustion laser
+            int probability  = Random.Range(0,20);
+            if (probability == 0) 
+            {
+                newPowerup = Instantiate(_powerups[5], RandomPosition, Quaternion.identity);
+                newPowerup.transform.parent = this.transform;
+            }
         }
     }
 
