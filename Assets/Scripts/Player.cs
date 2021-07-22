@@ -67,6 +67,9 @@ public class Player : MonoBehaviour
     private GameObject _combustionLaser;
     [SerializeField]
     private bool _isCombustionLaserActive = false;
+    [SerializeField]
+    private float _fuel = 100f;
+    private bool _fuelCooldownActive = false;
 
 
 
@@ -94,13 +97,23 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         // If player press left Key 
         // Then change speed value
-        if (Input.GetKeyDown(KeyCode.LeftShift)) 
+        if (Input.GetKey(KeyCode.LeftShift)  && !_fuelCooldownActive) 
         {
-            _thruster.SetActive(true);
-            _extraSpeed = 3f;
+            if (_fuel > 0) 
+            {
+                _thruster.SetActive(true);
+                _extraSpeed = 3f;
+                _fuel -= 15 * Time.deltaTime;
+                _uiManager.UpdateThrusterFuel(_fuel);
+            } else
+            {
+                _fuel = 0;
+                _thruster.SetActive(false);
+                _extraSpeed = 0f;
+                StartCoroutine(ThrusterCooldownRoutine());
+            }
         }
 
         // If player releases the shift key
@@ -117,6 +130,25 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && _canShoot)
         {
             Shoot();
+        }
+
+
+    }
+
+    IEnumerator ThrusterCooldownRoutine()
+    {
+        yield return new WaitForSeconds(3f);
+        _fuelCooldownActive = true;
+        while (true) 
+        {
+            _fuel += 15 * Time.deltaTime;
+            _uiManager.UpdateThrusterFuel(_fuel);
+            if (_fuel >= 100f) 
+            {
+                _fuelCooldownActive = false;
+                break;
+            }
+            yield return new WaitForSeconds(15 * Time.deltaTime);
         }
     }
 

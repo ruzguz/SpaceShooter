@@ -19,6 +19,8 @@ public class UIManager : MonoBehaviour
     private float _flikerDelay = 0.5f;
     [SerializeField]
     private Text _ammoText;
+    [SerializeField]
+    private Slider _thrusterSlider;
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +49,11 @@ public class UIManager : MonoBehaviour
     {    
         StartCoroutine(FlikerGameOverText());
         _resetGameText.gameObject.SetActive(true);
+    }
+
+    public void UpdateThrusterFuel(float value)
+    {
+        _thrusterSlider.value = value;
     }
 
     IEnumerator FlikerGameOverText()
