@@ -282,9 +282,11 @@ public class Player : MonoBehaviour
 
     public void Damage()
     {
+        _gameManager.ShakeCamera();
         _lives--;
         _uiManager.UpdateLives(_lives);
         _damageAudio.Play();
+
 
         DrawEngineDamage();
 

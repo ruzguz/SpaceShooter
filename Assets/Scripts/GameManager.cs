@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private bool _gameIsOver = false;
+    [SerializeField]
+    private Animator _cameraAnim;
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +39,11 @@ public class GameManager : MonoBehaviour
 
     void ResetGame()
     {
-        SceneManager.LoadScene(0); // Load Game Scene 
+        SceneManager.LoadScene(1); // Load Game Scene 
+    }
+
+    public void ShakeCamera()
+    {
+        _cameraAnim.Play("Camera_anim");
     }
 }

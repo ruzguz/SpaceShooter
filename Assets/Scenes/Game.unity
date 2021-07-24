@@ -572,6 +572,7 @@ GameObject:
   - component: {fileID: 327406533}
   - component: {fileID: 327406532}
   - component: {fileID: 327406535}
+  - component: {fileID: 327406536}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -704,6 +705,25 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!95 &327406536
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 327406531}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6d5944eba6d474842be9082363f1f890, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &360094681
 GameObject:
   m_ObjectHideFlags: 0
@@ -1061,7 +1081,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 80.9, y: -248.5}
+  m_AnchoredPosition: {x: 80.8999, y: -248.5}
   m_SizeDelta: {x: 30, y: 160}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &683507327
@@ -1619,7 +1639,7 @@ Transform:
   m_GameObject: {fileID: 996340311}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.03, y: 0.71, z: 0}
-  m_LocalScale: {x: 1.0739455, y: 1.1886146, z: 1}
+  m_LocalScale: {x: 1.3857471, y: 1.5337083, z: 1.2903327}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -2970,6 +2990,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameIsOver: 0
+  _cameraAnim: {fileID: 327406536}
 --- !u!1001 &7899616731799432800
 PrefabInstance:
   m_ObjectHideFlags: 0
