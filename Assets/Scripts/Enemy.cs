@@ -10,6 +10,8 @@ public class Enemy : MonoBehaviour
     private float _respawnYPosition = 8f;
     private float _bottomLimit = -5.5f;
     private float _horizontalLimit = 9.5f;
+    [SerializeField]
+    private int _movementType; // 0 = straigh, 1 = wave, 2 = diagonal
     // References
     Player _player;
     private Animator _enemyAnim;
@@ -21,6 +23,7 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private Transform[] _cannonPositions; // 0 = left cannon, 1 = right cannon
     private IEnumerator _shootLaserRoutine;
+
 
     void Start() {
 
@@ -45,6 +48,13 @@ public class Enemy : MonoBehaviour
             Debug.LogError("Enemy Script: Collider is null");
         }
 
+        _movementType = Random.Range(0,6);
+
+        if (_movementType == 2) 
+        {
+            transform.Rotate(0,0,-30);
+        }
+
         _explosionAudio = GameObject.Find("Explosion").GetComponent<AudioSource>();
         _shootLaserRoutine = ShootLaserRoutine();
         StartCoroutine(_shootLaserRoutine);
@@ -53,8 +63,21 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Move enemy down at 4 meters per second
-        transform.Translate(Vector3.down * _speed * Time.deltaTime);
+        switch(_movementType)
+        {
+            case 1:
+                // The number that multiply the value within cos increase the speed, the number that multiply the result increase the range 
+                transform.Translate(new Vector3(Mathf.Cos(Time.time * 4) * 2, -1, 0) * _speed * Time.deltaTime);
+                break;
+            case 2: 
+                
+                transform.Translate(Vector3.down * _speed * 2 * Time.deltaTime);
+                break;
+            default:
+                transform.Translate(Vector3.down * _speed * Time.deltaTime);
+                break;
+        }
+        
         // If enemy goes out of the camera, respawn the enemy at the top i a new random x position
         if (transform.position.y <= _bottomLimit) 
         {
