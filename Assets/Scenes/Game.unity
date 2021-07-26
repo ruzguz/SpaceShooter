@@ -157,7 +157,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.00017548}
+  m_AnchoredPosition: {x: 38.900032, y: 0.00017548}
   m_SizeDelta: {x: 800, y: 450.081}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &65725439
@@ -411,7 +411,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 4, y: 156}
+  m_AnchoredPosition: {x: -29.2, y: 156}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &251034018
@@ -447,7 +447,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Ammo: 15'
+  m_Text: 'Ammo: 30/30'
 --- !u!222 &251034019
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1151,7 +1151,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &752979670
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1168,7 +1168,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 135}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 763, y: 152}
+  m_AnchoredPosition: {x: 750.6, y: 149.4}
   m_SizeDelta: {x: 74.97531, y: 28.565758}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &752979671
@@ -1449,7 +1449,8 @@ MonoBehaviour:
   _extraSpeed: 0
   _laserOffset: 1
   _fireRate: 0.3
-  _ammo: 15
+  _ammo: 30
+  _maxAmmo: 30
   _isTripleShotActive: 0
   _laserPrefab: {fileID: 280429198995490869, guid: 040e362533a804f49bf8f74720ccd33e, type: 3}
   _tripleShotPrefab: {fileID: 3516332634662472024, guid: 954f3ca505cb74f3ea2a772d5b4117c6, type: 3}
@@ -1740,7 +1741,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -50, y: -20}
+  m_AnchoredPosition: {x: -45, y: -20}
   m_SizeDelta: {x: 106.5614, y: 19.60495}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1004344905

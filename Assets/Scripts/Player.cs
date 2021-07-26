@@ -27,6 +27,15 @@ public class Player : MonoBehaviour
     private bool _canShoot = true;
     [SerializeField]
     private int _ammo = 15;
+    [SerializeField]
+    private int _maxAmmo = 30;
+    public float maxAmmo 
+    {
+        get 
+        {
+            return _maxAmmo;
+        }
+    }
     // Powerup variables
     [SerializeField]
     private bool _isTripleShotActive = false;
@@ -216,7 +225,12 @@ public class Player : MonoBehaviour
     public void AddAmmo()
     {
         _ammo += 15;
-        _uiManager.UpdateAmmo(_ammo);
+        
+        if (_ammo > _maxAmmo) 
+        {
+            _ammo = _maxAmmo;
+        }
+        _uiManager.UpdateAmmo(_ammo, _maxAmmo);
     }
 
     void CalculateMovement() 
@@ -257,7 +271,7 @@ public class Player : MonoBehaviour
         } else if (_ammo > 0)
         {
             _ammo--;
-            _uiManager.UpdateAmmo(_ammo);
+            _uiManager.UpdateAmmo(_ammo, _maxAmmo);
             // Shooting a laser
             Vector3 laserStartPosition = new Vector3(transform.position.x, transform.position.y + _laserOffset, 0f);
             laser = Instantiate(_laserPrefab, laserStartPosition , Quaternion.identity);

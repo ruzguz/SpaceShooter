@@ -22,6 +22,7 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Slider _thrusterSlider;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,9 +41,10 @@ public class UIManager : MonoBehaviour
         _livesImage.sprite = _liveSprites[currentLives];
     }
 
-    public void UpdateAmmo(int ammo) 
+    public void UpdateAmmo(int ammo, int maxAmmo) 
     {
-        _ammoText.text = "Ammo: " + ammo;
+
+        _ammoText.text = "Ammo: " + ammo+ "/" + maxAmmo;
     }
 
     public void ShowGameOverScreen()
