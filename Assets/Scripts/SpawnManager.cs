@@ -12,13 +12,17 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private GameObject _enemyPrefab;
     [SerializeField]
-    private float _spawnEnemyDelay = 5f;
+    private float _spawnEnemyDelay = 3f;
     [SerializeField]
     private GameObject[] _powerups;
     [SerializeField]
-    private float _spawnTripleShotPowerupDelay = 7f;
+    private float _spawnPowerupDelay = 7f;
     [SerializeField]
     private bool _stopSpawn = false;
+    [SerializeField]
+    private int _spawnDuration = 10;
+    [SerializeField]
+    private UIManager _uiManager;
 
     // Start is called before the first frame update
     void Start()
@@ -28,8 +32,17 @@ public class SpawnManager : MonoBehaviour
 
     public void StartSpawning()
     {
+        _uiManager.EnableWaveText();
+        _stopSpawn = false;
         StartCoroutine(SpawnEnemyRoutine());
         StartCoroutine(SpawnPowerupRoutine());
+        StartCoroutine(ActiveSpawnTimerRoutine(_spawnDuration));
+    }
+
+    IEnumerator ActiveSpawnTimerRoutine(int spawnDuration)
+    {
+        yield return new WaitForSeconds(spawnDuration);
+        _stopSpawn = true;
     }
 
     IEnumerator SpawnEnemyRoutine()
@@ -61,7 +74,7 @@ public class SpawnManager : MonoBehaviour
             int randomPowerup = Random.Range(0,_powerups.Length -1);
             GameObject newPowerup = Instantiate(_powerups[randomPowerup], RandomPosition, Quaternion.identity);
             newPowerup.transform.parent = this.transform;
-            yield return new WaitForSeconds(_spawnTripleShotPowerupDelay);
+            yield return new WaitForSeconds(_spawnPowerupDelay);
 
             // Spawn combustion laser rarely 
             randomXPosition = Random.Range(-11f, 11f);
@@ -81,4 +94,10 @@ public class SpawnManager : MonoBehaviour
     {
         _stopSpawn = true;
     }
+
+    public void UpdateSpawnDelay(float delay) 
+    {
+        _spawnEnemyDelay = delay;
+    }
+
 }

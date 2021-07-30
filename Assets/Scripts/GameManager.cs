@@ -10,6 +10,10 @@ public class GameManager : MonoBehaviour
     private bool _gameIsOver = false;
     [SerializeField]
     private Animator _cameraAnim;
+    private int _waveNumber = 0;
+    [SerializeField]
+    private GameObject _spawnManger;
+    
 
     // Start is called before the first frame update
     void Start()
