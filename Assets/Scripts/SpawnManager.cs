@@ -23,11 +23,24 @@ public class SpawnManager : MonoBehaviour
     private int _spawnDuration = 10;
     [SerializeField]
     private UIManager _uiManager;
+    private int _waveCounter;
+    public int waveCounter 
+    {
+        get { return _waveCounter; }
+        set { _waveCounter = value; }
+    }
+    [SerializeField]
+    private GameObject _waveContainer;
 
     // Start is called before the first frame update
     void Start()
     {
 
+    }
+
+    void Update() 
+    {
+        CheckWave();
     }
 
     public void StartSpawning()
@@ -37,8 +50,16 @@ public class SpawnManager : MonoBehaviour
         StartCoroutine(SpawnEnemyRoutine());
         StartCoroutine(SpawnPowerupRoutine());
         StartCoroutine(ActiveSpawnTimerRoutine(_spawnDuration));
+        _waveCounter++;
     }
 
+    public void CheckWave()
+    {
+        if (_stopSpawn == true && _waveContainer.transform.childCount == 0) 
+        {
+            StartSpawning();
+        }
+    }
     IEnumerator ActiveSpawnTimerRoutine(int spawnDuration)
     {
         yield return new WaitForSeconds(spawnDuration);
@@ -56,7 +77,7 @@ public class SpawnManager : MonoBehaviour
                     
             // Spawning enemy and wait 5 seconds
             GameObject newEnemy = Instantiate(_enemyPrefab, randomPosition, Quaternion.identity);
-            newEnemy.transform.parent = this.transform;
+            newEnemy.transform.parent = _waveContainer.transform;
             yield return new WaitForSeconds(_spawnEnemyDelay);
         }
     }

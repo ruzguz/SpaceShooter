@@ -23,7 +23,8 @@ public class UIManager : MonoBehaviour
     private Slider _thrusterSlider;
     [SerializeField]
     private Text _waveText;
-    private int _waveCounter = 0;
+    [SerializeField]
+    private SpawnManager _spawnManager;
 
 
     // Start is called before the first frame update
@@ -79,11 +80,10 @@ public class UIManager : MonoBehaviour
 
     IEnumerator WaveTextRoutine()
     {
-        _waveText.text = "Wave "+_waveCounter;
+        _waveText.text = "Wave "+_spawnManager.waveCounter;
         _waveText.gameObject.SetActive(true);
         yield return new WaitForSeconds(4);
         _waveText.gameObject.SetActive(false);
-        _waveCounter++;
     }
 
 }

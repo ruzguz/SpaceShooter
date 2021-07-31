@@ -204,6 +204,7 @@ MonoBehaviour:
   _stopSpawn: 0
   _spawnDuration: 10
   _uiManager: {fileID: 1052635467}
+  _waveContainer: {fileID: 760864480}
 --- !u!4 &65725441
 Transform:
   m_ObjectHideFlags: 0
@@ -1212,6 +1213,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 752979669}
   m_CullTransparentMesh: 0
+--- !u!1 &760864480
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 760864481}
+  m_Layer: 0
+  m_Name: WaveContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &760864481
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 760864480}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 249.75679, y: 160.31671, z: -179.38062}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &766221028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1897,6 +1928,7 @@ MonoBehaviour:
   _ammoText: {fileID: 251034018}
   _thrusterSlider: {fileID: 683507327}
   _waveText: {fileID: 2035211809}
+  _spawnManager: {fileID: 65725440}
 --- !u!4 &1052635468
 Transform:
   m_ObjectHideFlags: 0
