@@ -79,6 +79,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _fuel = 100f;
     private bool _fuelCooldownActive = false;
+    private bool _isSystemHacked = false;
+    private Vector3 _hackingPath;
 
 
 
@@ -140,7 +142,6 @@ public class Player : MonoBehaviour
         {
             Shoot();
         }
-
 
     }
 
@@ -233,6 +234,19 @@ public class Player : MonoBehaviour
         _uiManager.UpdateAmmo(_ammo, _maxAmmo);
     }
 
+    IEnumerator HackSystemRoutine()
+    {
+        _hackingPath = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0);
+        _isSystemHacked = true;
+        yield return new WaitForSeconds(10f);
+        _isSystemHacked = false;
+    }
+
+    public void EnableHakingMovement() 
+    {
+        StartCoroutine(HackSystemRoutine());
+    }
+
     void CalculateMovement() 
     {
         // Getting axis values
@@ -241,6 +255,12 @@ public class Player : MonoBehaviour
         
         // Translate player
         transform.Translate(new Vector3(horizontalInput, verticalInput, 0) * (_speed + _extraSpeed) * Time.deltaTime);
+
+        // Movement if player is hacked
+        if (_isSystemHacked) 
+        {
+            transform.Translate(_hackingPath * (_speed + _extraSpeed) * Time.deltaTime);
+        }
 
         // Vertical bounds
         if (transform.position.y <= _minY) 

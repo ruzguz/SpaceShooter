@@ -199,7 +199,8 @@ MonoBehaviour:
   - {fileID: 6856094545282522120, guid: e03ab3b344a5f453abf73b26b6cd4fa2, type: 3}
   - {fileID: 869418263426402820, guid: 82f86ec6a31404695b16157681610325, type: 3}
   - {fileID: 348455692265786697, guid: 7b5ab5edb0bf241e88e9d47c496e0896, type: 3}
-  - {fileID: 348455692265786697, guid: 7b5ab5edb0bf241e88e9d47c496e0896, type: 3}
+  - {fileID: 869418263426402820, guid: 82f86ec6a31404695b16157681610325, type: 3}
+  - {fileID: 2003303942085338581, guid: d2a8779860aff48a8a2761700adbd47f, type: 3}
   _spawnPowerupDelay: 7
   _stopSpawn: 0
   _spawnDuration: 10
