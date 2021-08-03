@@ -196,6 +196,18 @@ public class Player : MonoBehaviour
         _isCombustionLaserActive = false;
     }
 
+    IEnumerator SlowDownCooldown()
+    {
+        _speed = 1.5f;
+        yield return new WaitForSeconds(5f);
+        _speed = _normalSpeed;
+    }
+
+    public void ActiveSlowDown()
+    {
+        StartCoroutine(SlowDownCooldown());
+    }
+
     public void ActivateSpeedBoost()
     {
         StartCoroutine(SpeedBoostCooldown());
