@@ -316,6 +316,12 @@ public class Player : MonoBehaviour
         StartCoroutine(ActiveCooldown());
     }
 
+    public void ActiveZeroAmmo()
+    {
+        _ammo = 0;
+        _uiManager.UpdateAmmo(_ammo, _maxAmmo);
+    }
+
     public void Heal()
     {
         if (_lives < 3) 
