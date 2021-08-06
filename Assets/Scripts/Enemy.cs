@@ -149,7 +149,6 @@ public class Enemy : MonoBehaviour
         {
             int index = Random.Range(0,2);
             GameObject laser = Instantiate(_laserPrefab, _cannonPositions[index].position, Quaternion.identity);
-            //laser.transform.parent = transform;
             laser.transform.rotation = transform.rotation;
             yield return new WaitForSeconds(Random.Range(3f,5f));            
         }

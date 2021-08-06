@@ -101,22 +101,46 @@ public class SpawnManager : MonoBehaviour
             Vector3 RandomPosition = new Vector3(randomXPosition, 8f, transform.position.z);
 
             // Spaning triple shot powerup
-            int randomPowerup = Random.Range(0,_powerups.Length);
+            int randomPowerup = GeneratePowerupIndex(Random.Range(0,101));
+
             GameObject newPowerup = Instantiate(_powerups[randomPowerup], RandomPosition, Quaternion.identity);
             newPowerup.transform.parent = this.transform;
             yield return new WaitForSeconds(_spawnPowerupDelay);
+        }
+    }
 
-            // Spawn combustion laser rarely 
-            randomXPosition = Random.Range(-11f, 11f);
-            RandomPosition = new Vector3(randomXPosition, 8f, transform.position.z);
-
-            // if random number = 0 then spawn combustion laser
-            int probability  = Random.Range(0,20);
-            if (probability == 0) 
-            {
-                newPowerup = Instantiate(_powerups[5], RandomPosition, Quaternion.identity);
-                newPowerup.transform.parent = this.transform;
-            }
+    int GeneratePowerupIndex(int random)
+    {
+        if (random >= 0 && random < 10) 
+        {
+            return 0; // Tripleshoot 
+        } else if (random >= 10 && random < 20) 
+        {
+            return 1; // Speed Boost
+        } else if (random >= 20 && random < 30) 
+        {
+            return 2; // Shield
+        } else if (random >= 30 && random < 50) 
+        {
+            return 3; // Ammo
+        } else if (random >= 50 && random < 55)
+        {
+            return 4; // Health
+        } else if (random >= 60 && random < 70)  
+        {
+            return 6; // Negative: random movement
+        } else if (random >= 70 && random < 80)
+        {
+            return 7; // Negative: Slow down player
+        } else if (random >= 80 && random < 90) 
+        {
+            return 8; // Negative: zero ammo
+        } else if (random >= 90 && random < 93) 
+        {
+            return 9; //  Combustion laser
+        } else 
+        {
+            return 3; //  Ammo
         }
     }
 
