@@ -73,7 +73,22 @@ public class Enemy : MonoBehaviour
                 
                 transform.Translate(Vector3.down * _speed * 2 * Time.deltaTime);
                 break;
+            case 3:
+                if (_player != null) {
+                    Vector3 targ = _player.transform.position;
+                    targ.z = 0f;
+
+                    Vector3 objectPost = transform.position;
+                    targ.x = targ.x - objectPost.x;
+                    targ.y = targ.y - objectPost.y;
+
+                    float angle = Mathf.Atan2(targ.x,targ.y) * Mathf.Rad2Deg;
+                    transform.rotation = Quaternion.Euler(new Vector3(0,0, -angle - 180));
+                    transform.position = Vector3.MoveTowards(transform.position, _player.transform.position, _speed * Time.deltaTime);
+                }
+                break;
             default:
+                // Rotate enemy to face the player
                 transform.Translate(Vector3.down * _speed * Time.deltaTime);
                 break;
         }
@@ -134,8 +149,8 @@ public class Enemy : MonoBehaviour
         {
             int index = Random.Range(0,2);
             GameObject laser = Instantiate(_laserPrefab, _cannonPositions[index].position, Quaternion.identity);
-            laser.transform.parent = transform;
-            Debug.Log(index);
+            //laser.transform.parent = transform;
+            laser.transform.rotation = transform.rotation;
             yield return new WaitForSeconds(Random.Range(3f,5f));            
         }
     }
