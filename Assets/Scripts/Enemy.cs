@@ -23,6 +23,8 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private Transform[] _cannonPositions; // 0 = left cannon, 1 = right cannon
     private IEnumerator _shootLaserRoutine;
+    [SerializeField]
+    private int _enemyID;
 
 
     void Start() {
@@ -56,8 +58,14 @@ public class Enemy : MonoBehaviour
         }
 
         _explosionAudio = GameObject.Find("Explosion").GetComponent<AudioSource>();
-        _shootLaserRoutine = ShootLaserRoutine();
-        StartCoroutine(_shootLaserRoutine);
+        
+        if (_enemyID == 0) 
+        {
+            _shootLaserRoutine = ShootLaserRoutine();
+            StartCoroutine(_shootLaserRoutine);
+        }
+
+        
     }
 
     // Update is called once per frame
@@ -156,7 +164,11 @@ public class Enemy : MonoBehaviour
 
     void Explode()
     {
-        StopCoroutine(_shootLaserRoutine);
+        if (_enemyID == 0)
+        {
+            StopCoroutine(_shootLaserRoutine);
+        }
+        
         _explosionAudio.Play();
         _enemyAnim.SetTrigger("OnEnemyDeath");
         _speed = 0;

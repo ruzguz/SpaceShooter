@@ -203,6 +203,7 @@ MonoBehaviour:
   - {fileID: 2003303942085338581, guid: d2a8779860aff48a8a2761700adbd47f, type: 3}
   - {fileID: 2003303942085338581, guid: af6e54e2c04e34815b5d8c2ddf80351c, type: 3}
   - {fileID: 2003303942085338581, guid: 80905aa9c812c42f090dd966c9cefffe, type: 3}
+  - {fileID: 6347087118285028676, guid: 41460f3421d84480b8a85499872e956b, type: 3}
   _spawnPowerupDelay: 7
   _stopSpawn: 0
   _spawnDuration: 10
@@ -1565,7 +1566,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 848867532}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -2.86, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 1660424602}
