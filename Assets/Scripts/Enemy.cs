@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour
     private float _bottomLimit = -5.5f;
     private float _horizontalLimit = 9.5f;
     [SerializeField]
-    private int _movementType; // 0 = straigh, 1 = wave, 2 = diagonal
+    private int _movementType = 0; // 0 = straigh, 1 = wave, 2 = diagonal
     // References
     Player _player;
     private Animator _enemyAnim;
@@ -50,21 +50,20 @@ public class Enemy : MonoBehaviour
             Debug.LogError("Enemy Script: Collider is null");
         }
 
-        _movementType = Random.Range(0,6);
-
-        if (_movementType == 2) 
-        {
-            transform.Rotate(0,0,-30);
-        }
-
         _explosionAudio = GameObject.Find("Explosion").GetComponent<AudioSource>();
         
         if (_enemyID == 0) 
         {
+            _movementType = Random.Range(0,6);
+
+            if (_movementType == 2) 
+            {
+                transform.Rotate(0,0,-30);
+            }
+
             _shootLaserRoutine = ShootLaserRoutine();
             StartCoroutine(_shootLaserRoutine);
         }
-
         
     }
 
@@ -96,7 +95,6 @@ public class Enemy : MonoBehaviour
                 }
                 break;
             default:
-                // Rotate enemy to face the player
                 transform.Translate(Vector3.down * _speed * Time.deltaTime);
                 break;
         }
@@ -174,5 +172,11 @@ public class Enemy : MonoBehaviour
         _speed = 0;
         _enemyCollider.enabled = false;
         Destroy(this.gameObject, 3f);
+    }
+
+    public void Ram()
+    {
+        _speed = 8f;
+        _movementType = 3;
     }
 }
