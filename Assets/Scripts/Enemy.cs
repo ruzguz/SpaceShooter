@@ -60,7 +60,10 @@ public class Enemy : MonoBehaviour
             {
                 transform.Rotate(0,0,-30);
             }
+        }
 
+        if (_enemyID == 0 || _enemyID == 3) 
+        {
             _shootLaserRoutine = ShootLaserRoutine();
             StartCoroutine(_shootLaserRoutine);
         }
@@ -98,6 +101,7 @@ public class Enemy : MonoBehaviour
                 transform.Translate(Vector3.down * _speed * Time.deltaTime);
                 break;
         }
+
         
         // If enemy goes out of the camera, respawn the enemy at the top i a new random x position
         if (transform.position.y <= _bottomLimit) 
@@ -156,7 +160,13 @@ public class Enemy : MonoBehaviour
             int index = Random.Range(0,2);
             GameObject laser = Instantiate(_laserPrefab, _cannonPositions[index].position, Quaternion.identity);
             laser.transform.rotation = transform.rotation;
-            yield return new WaitForSeconds(Random.Range(3f,5f));            
+
+            if (_enemyID == 3 && transform.position.y < _player.transform.position.y) 
+            {
+                laser.transform.rotation = Quaternion.Euler(0,0,-180f);
+            }
+
+            yield return new WaitForSeconds(Random.Range(3f,5f));
         }
     }
 
