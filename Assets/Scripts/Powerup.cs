@@ -8,18 +8,30 @@ public class Powerup : MonoBehaviour
     [SerializeField]
     private float _speed = 3f;
     [SerializeField]
+    private float _extraSpeed = 0f;
+    [SerializeField]
     private int powerupID; // 0 = Triple Shot, 1 = Speed Boost, 2 = Shield, 3 = Extra Ammo, 4 = Add Live, 5 = Combustion Laser, 
                            //6 = Hack System, 7 = Slow Down, 8 = Zero Ammo
 
     // Update is called once per frame.
     void Update()
     {
+
+        // Pickup Collect Extra Speed
+        if (Input.GetKey(KeyCode.C)) 
+        {
+            _extraSpeed = 6f;
+        } else 
+        {
+            _extraSpeed = 0;
+        }
+
         Move();   
     }
 
     void Move()
     {
-        transform.Translate(Vector3.down * _speed * Time.deltaTime);
+        transform.Translate(Vector3.down * (_speed + _extraSpeed) * Time.deltaTime);
 
         if (transform.position.y <= -6.5f) 
         {

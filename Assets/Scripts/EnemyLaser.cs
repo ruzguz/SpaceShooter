@@ -13,7 +13,7 @@ public class EnemyLaser : MonoBehaviour
         set { _speed = value; }
         get { return _speed; }
     }
-    private float _limit = -7f;
+    private float _limit = -11f;
 
     // Update is called once per frame
     void Update()
