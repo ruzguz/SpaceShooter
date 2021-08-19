@@ -25,6 +25,14 @@ public class Enemy : MonoBehaviour
     private IEnumerator _shootLaserRoutine;
     [SerializeField]
     private int _enemyID;
+    [SerializeField]
+    private float _shootDelay = 3f;
+    public float shootDelay 
+    {
+        set { _shootDelay = value; }
+        get { return _shootDelay; }
+    }
+
 
 
     void Start() {
@@ -157,16 +165,20 @@ public class Enemy : MonoBehaviour
     {
         while(true)
         {
-            int index = Random.Range(0,2);
-            GameObject laser = Instantiate(_laserPrefab, _cannonPositions[index].position, Quaternion.identity);
-            laser.transform.rotation = transform.rotation;
+            Shoot();
+            yield return new WaitForSeconds(_shootDelay);
+        }
+    }
 
-            if (_enemyID == 3 && transform.position.y < _player.transform.position.y) 
-            {
-                laser.transform.rotation = Quaternion.Euler(0,0,-180f);
-            }
+    void Shoot()
+    {
+        int index = Random.Range(0,2);
+        GameObject laser = Instantiate(_laserPrefab, _cannonPositions[index].position, Quaternion.identity);
+        laser.transform.rotation = transform.rotation;
 
-            yield return new WaitForSeconds(Random.Range(3f,5f));
+        if (_enemyID == 3 && transform.position.y < _player.transform.position.y) 
+        {
+            laser.transform.rotation = Quaternion.Euler(0,0,-180f);
         }
     }
 

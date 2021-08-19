@@ -71,5 +71,16 @@ public class Powerup : MonoBehaviour
             }
             Destroy(gameObject);
         }
+
+        if (other.CompareTag("Enemy Laser")) 
+        {
+            Destroy(other.gameObject);
+            Destroy(gameObject);
+        }
+
+        if (other.CompareTag("Enemy")) 
+        {
+            Destroy(gameObject);
+        }
     }
 }

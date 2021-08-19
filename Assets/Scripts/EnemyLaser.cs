@@ -7,13 +7,13 @@ public class EnemyLaser : MonoBehaviour
 
     [SerializeField]
     private float _speed = 8f;
-    private float _limit = -7f;
     
-    // Start is called before the first frame update
-    void Start()
+    public float speed 
     {
-        
+        set { _speed = value; }
+        get { return _speed; }
     }
+    private float _limit = -7f;
 
     // Update is called once per frame
     void Update()

@@ -10,6 +10,7 @@ TagManager:
   - Enemy Laser
   - CombustionLaser
   - Combustion
+  - Powerup
   layers:
   - Default
   - TransparentFX
