@@ -32,6 +32,8 @@ public class Enemy : MonoBehaviour
         set { _shootDelay = value; }
         get { return _shootDelay; }
     }
+    private bool _dodge =  false;
+    private int _dodgePath = 0; // 0 = left, 1 = right
 
 
 
@@ -81,6 +83,13 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Move();
+        CheckLimits();
+    }
+
+
+    void Move()
+    {
         switch(_movementType)
         {
             case 1:
@@ -107,15 +116,42 @@ public class Enemy : MonoBehaviour
                 break;
             default:
                 transform.Translate(Vector3.down * _speed * Time.deltaTime);
+                
+                // Dodge player laser
+                if (_enemyID == 4 && _dodge == true) 
+                {
+                    Vector3 path = (_dodgePath == 0)?Vector3.left:Vector3.right;
+                    transform.Translate(path * _speed * 2 * Time.deltaTime);
+                }
                 break;
         }
+    }
 
-        
+    IEnumerator DodgeRoutine()
+    {
+        _dodgePath = Random.Range(0,2);
+        _dodge = true;
+        yield return new WaitForSeconds(0.3f);
+        _dodge = false;
+    }
+
+    public void Dodge()
+    {
+        StartCoroutine(DodgeRoutine());
+    }
+
+    void CheckLimits()
+    {
         // If enemy goes out of the camera, respawn the enemy at the top i a new random x position
         if (transform.position.y <= _bottomLimit) 
         {
             float newXposition = Random.Range(-_horizontalLimit, _horizontalLimit);
             transform.position = new Vector3(newXposition, _respawnYPosition, 0);
+        }
+
+        if (Mathf.Abs(transform.position.x) > 11.5f)
+        {
+            transform.position = new Vector3(-transform.position.x, transform.position.y, 0);
         }
     }
 
