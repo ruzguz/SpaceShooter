@@ -11,7 +11,7 @@ public class Powerup : MonoBehaviour
     private float _extraSpeed = 0f;
     [SerializeField]
     private int powerupID; // 0 = Triple Shot, 1 = Speed Boost, 2 = Shield, 3 = Extra Ammo, 4 = Add Live, 5 = Combustion Laser, 
-                           //6 = Hack System, 7 = Slow Down, 8 = Zero Ammo
+                           //6 = Hack System, 7 = Slow Down, 8 = Zero Ammo, 9 = homming laser
 
     // Update is called once per frame.
     void Update()
@@ -75,6 +75,8 @@ public class Powerup : MonoBehaviour
                         break;
                     case 8: 
                         player.ActiveZeroAmmo();
+                        break;
+                    case 9:
                         break;
                     default:
                         Debug.Log("Invalid Powerup");
