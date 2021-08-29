@@ -48,9 +48,10 @@ public class SpawnManager : MonoBehaviour
 
         // Check if wave counter is a multiple of 2 to increase the spawn speed 
         // The idea is increase the speed each 2 rounds
-        if (_waveCounter%2 == 0 && _spawnEnemyDelay>1) 
+        if (_waveCounter%2 == 0 && _spawnEnemyDelay>0.5f) 
         {
-            _spawnEnemyDelay -= 0.2f;
+            _spawnEnemyDelay -= 0.3f;
+            _spawnDuration += 5;
         }
 
         _uiManager.EnableWaveText();
