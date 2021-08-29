@@ -77,6 +77,7 @@ public class Powerup : MonoBehaviour
                         player.ActiveZeroAmmo();
                         break;
                     case 9:
+                        player.ActiveHommingLaser();
                         break;
                     default:
                         Debug.Log("Invalid Powerup");

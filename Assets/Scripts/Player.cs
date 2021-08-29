@@ -81,6 +81,10 @@ public class Player : MonoBehaviour
     private bool _fuelCooldownActive = false;
     private bool _isSystemHacked = false;
     private Vector3 _hackingPath;
+    [SerializeField]
+    private GameObject _hommingLaser;
+    [SerializeField]
+    private bool _isHommingLaserActive = false;
 
 
 
@@ -235,6 +239,18 @@ public class Player : MonoBehaviour
 
     }
 
+    IEnumerator HommingLaserRoutine()
+    {
+        _isHommingLaserActive = true;
+        yield return new WaitForSeconds(6f);
+        _isHommingLaserActive = false;
+    }
+
+    public void ActiveHommingLaser()
+    {
+        StartCoroutine(HommingLaserRoutine());
+    }
+
     public void AddAmmo()
     {
         _ammo += 15;
@@ -300,6 +316,9 @@ public class Player : MonoBehaviour
         } else if (_isCombustionLaserActive)
         {
             laser = Instantiate(_combustionLaser, transform.position, Quaternion.identity);
+        } else if (_isHommingLaserActive) 
+        {
+            laser = Instantiate(_hommingLaser, transform.position, Quaternion.identity);
         } else if (_ammo > 0)
         {
             _ammo--;

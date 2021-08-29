@@ -7,7 +7,10 @@ public class HommingLaser : MonoBehaviour
     [SerializeField]
     private Transform _nearestEnemy = null;
     private float _minDistance = Mathf.Infinity;
+    [SerializeField]
     private float _speed = 8f;
+    [SerializeField]
+    private float _rotationSpeed = 45f;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,24 +39,8 @@ public class HommingLaser : MonoBehaviour
             }
         } else 
         {
-            // Vector3 laserPosition = transform.position;
-            // Vector3 targetPosition = _nearestEnemy.transform.position;
-            // targetPosition.z = laserPosition.z;
-
-            // Vector3 vectorToTarget = targetPosition - laserPosition;
-
-            // Vector3 rotatedVectorToTarget = Quaternion.Euler(0,0,90) * vectorToTarget;
-
-            // Quaternion targetRotation = Quaternion.LookRotation(forward: Vector3.forward, upwards: rotatedVectorToTarget);
-
-            // transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, Time.deltaTime * 5);
-
-
             transform.position = Vector3.MoveTowards(transform.position, _nearestEnemy.transform.position, _speed * Time.deltaTime);
-            Quaternion rotation = Quaternion.LookRotation(transform.position  - _nearestEnemy.position, Vector3.forward);
-            Debug.Log(rotation.z);
-            // transform.rotation = rotation;
-            transform.Rotate(0,0,rotation.x * 45);
+            transform.Rotate(0,0, Time.time * _rotationSpeed);
         }
  
     }

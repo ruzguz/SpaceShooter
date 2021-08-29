@@ -204,6 +204,7 @@ MonoBehaviour:
   - {fileID: 2003303942085338581, guid: af6e54e2c04e34815b5d8c2ddf80351c, type: 3}
   - {fileID: 2003303942085338581, guid: 80905aa9c812c42f090dd966c9cefffe, type: 3}
   - {fileID: 6347087118285028676, guid: 41460f3421d84480b8a85499872e956b, type: 3}
+  - {fileID: 869418263426402820, guid: 0796b97b79e264e6285e3bf03f288f5e, type: 3}
   _spawnPowerupDelay: 7
   _stopSpawn: 0
   _spawnDuration: 10
@@ -1507,6 +1508,8 @@ MonoBehaviour:
   _combustionLaser: {fileID: 280429198995490869, guid: be4f620321c844ea689fc7149cd2d23e, type: 3}
   _isCombustionLaserActive: 0
   _fuel: 100
+  _hommingLaser: {fileID: 280429198995490869, guid: 5c1e4e5f3dcf54bc195192c82b323b18, type: 3}
+  _isHommingLaserActive: 0
 --- !u!212 &848867534
 SpriteRenderer:
   m_ObjectHideFlags: 0

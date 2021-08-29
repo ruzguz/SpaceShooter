@@ -139,7 +139,10 @@ public class SpawnManager : MonoBehaviour
         } else if (random >= 90 && random < 93) 
         {
             return 9; //  Combustion laser
-        } else 
+        } else if (random >= 100 && random < 105) 
+        {
+            return 10; // Homming Laser
+        }
         {
             return 3; //  Ammo
         }
