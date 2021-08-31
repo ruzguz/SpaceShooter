@@ -10,8 +10,6 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private float _xRange = 11f;
     [SerializeField]
-    private GameObject _enemyPrefab;
-    [SerializeField]
     private float _spawnEnemyDelay = 3f;
     [SerializeField]
     private GameObject[] _powerups;
@@ -24,6 +22,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private UIManager _uiManager;
     private int _waveCounter;
+    [SerializeField]
     public int waveCounter 
     {
         get { return _waveCounter; }
@@ -31,12 +30,8 @@ public class SpawnManager : MonoBehaviour
     }
     [SerializeField]
     private GameObject _waveContainer;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
+    [SerializeField]
+    private GameObject[] _enemies;
 
     void Update() 
     {
@@ -84,11 +79,38 @@ public class SpawnManager : MonoBehaviour
             // Calculating random position
             float randomXPosition = Random.Range(-_xRange, _xRange);
             Vector3 randomPosition = new Vector3(randomXPosition, _startYPosition, transform.position.z);
+
+            // Get enemy type 
+            int enemyIndex = GetEnemyIndex(Random.Range(0,60));
+            Debug.Log(enemyIndex);
                     
             // Spawning enemy and wait 5 seconds
-            GameObject newEnemy = Instantiate(_enemyPrefab, randomPosition, Quaternion.identity);
+            GameObject newEnemy = Instantiate(_enemies[enemyIndex], randomPosition, Quaternion.identity);
             newEnemy.transform.parent = _waveContainer.transform;
             yield return new WaitForSeconds(_spawnEnemyDelay);
+        }
+    }
+
+    int GetEnemyIndex(int value)
+    {
+        if (value < 20) 
+        {
+            return 0; // normal enemy
+        } else if (value < 30) 
+        {
+            return 1; // Doger
+        } else if (value < 40) 
+        {
+            return 2; // Aggressive enemy
+        } else if (value < 50) 
+        {
+            return 3; // Enemy with Shield
+        } else if (value < 60) 
+        {
+            return 4; // Smart Enemy
+        } else 
+        {
+            return 0; // normal enemy
         }
     }
 

@@ -191,7 +191,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startYPosition: 8
   _xRange: 11
-  _enemyPrefab: {fileID: 6484963360147526563, guid: 40e555f5e70224096a8134789a544aa5, type: 3}
   _spawnEnemyDelay: 5
   _powerups:
   - {fileID: 2816862247027261623, guid: ac83bb8e4649f43198a0faeef0107542, type: 3}
@@ -210,6 +209,12 @@ MonoBehaviour:
   _spawnDuration: 10
   _uiManager: {fileID: 1052635467}
   _waveContainer: {fileID: 760864480}
+  _enemies:
+  - {fileID: 6484963360147526563, guid: 40e555f5e70224096a8134789a544aa5, type: 3}
+  - {fileID: 6484963360147526563, guid: 8cf7aada331634440adce41a3f43a34c, type: 3}
+  - {fileID: 6484963360147526563, guid: 45b6f841a5f57409eb63f40613f1da13, type: 3}
+  - {fileID: 6484963360147526563, guid: 4e6ec8a12a3b846118cca5a35803943d, type: 3}
+  - {fileID: 6484963360147526563, guid: a72cbb99d156c43d3bc11d36b9ff92aa, type: 3}
 --- !u!4 &65725441
 Transform:
   m_ObjectHideFlags: 0
