@@ -21,8 +21,8 @@ public class SpawnManager : MonoBehaviour
     private int _spawnDuration = 10;
     [SerializeField]
     private UIManager _uiManager;
-    private int _waveCounter;
     [SerializeField]
+    private int _waveCounter;
     public int waveCounter 
     {
         get { return _waveCounter; }
@@ -32,10 +32,29 @@ public class SpawnManager : MonoBehaviour
     private GameObject _waveContainer;
     [SerializeField]
     private GameObject[] _enemies;
+    [SerializeField]
+    private int _lastWave = 10;
+    private Coroutine _spawnEnemyRoutine, _activeSpawnTimerRoutine;
+    [SerializeField]
+    private GameObject _bossPrefab;
+    private GameObject _boss;
 
     void Update() 
     {
-        CheckWave();
+        if (_waveCounter <= _lastWave) 
+        {
+            CheckWave();
+        } else if (_boss == null)
+        {
+            StopSpawning();
+            _boss = Instantiate(_bossPrefab, new Vector3(0,5,0), Quaternion.identity);
+        }
+    }
+
+    public void StopSpawning() 
+    {
+        StopCoroutine(_spawnEnemyRoutine);
+        StopCoroutine(_activeSpawnTimerRoutine);
     }
 
     public void StartSpawning()
@@ -51,9 +70,9 @@ public class SpawnManager : MonoBehaviour
 
         _uiManager.EnableWaveText();
         _stopSpawn = false;
-        StartCoroutine(SpawnEnemyRoutine());
+        _spawnEnemyRoutine = StartCoroutine(SpawnEnemyRoutine());
         StartCoroutine(SpawnPowerupRoutine());
-        StartCoroutine(ActiveSpawnTimerRoutine(_spawnDuration));
+        _activeSpawnTimerRoutine = StartCoroutine(ActiveSpawnTimerRoutine(_spawnDuration));
         _waveCounter++;
     }
 

@@ -215,6 +215,8 @@ MonoBehaviour:
   - {fileID: 6484963360147526563, guid: 45b6f841a5f57409eb63f40613f1da13, type: 3}
   - {fileID: 6484963360147526563, guid: 4e6ec8a12a3b846118cca5a35803943d, type: 3}
   - {fileID: 6484963360147526563, guid: a72cbb99d156c43d3bc11d36b9ff92aa, type: 3}
+  _lastWave: 10
+  _bossPrefab: {fileID: 6484963360147526563, guid: 69d1569cb37e9447ea032fd440fbf5da, type: 3}
 --- !u!4 &65725441
 Transform:
   m_ObjectHideFlags: 0
