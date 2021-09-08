@@ -208,6 +208,7 @@ MonoBehaviour:
   _stopSpawn: 0
   _spawnDuration: 10
   _uiManager: {fileID: 1052635467}
+  _waveCounter: 0
   _waveContainer: {fileID: 760864480}
   _enemies:
   - {fileID: 6484963360147526563, guid: 40e555f5e70224096a8134789a544aa5, type: 3}

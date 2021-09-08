@@ -47,7 +47,7 @@ public class SpawnManager : MonoBehaviour
         } else if (_boss == null)
         {
             StopSpawning();
-            _boss = Instantiate(_bossPrefab, new Vector3(0,5,0), Quaternion.identity);
+            _boss = Instantiate(_bossPrefab, new Vector3(0,12,0), Quaternion.identity);
         }
     }
 
@@ -70,9 +70,12 @@ public class SpawnManager : MonoBehaviour
 
         _uiManager.EnableWaveText();
         _stopSpawn = false;
-        _spawnEnemyRoutine = StartCoroutine(SpawnEnemyRoutine());
+        if (_boss == null) 
+        {
+            _spawnEnemyRoutine = StartCoroutine(SpawnEnemyRoutine());
+            _activeSpawnTimerRoutine = StartCoroutine(ActiveSpawnTimerRoutine(_spawnDuration));
+        }
         StartCoroutine(SpawnPowerupRoutine());
-        _activeSpawnTimerRoutine = StartCoroutine(ActiveSpawnTimerRoutine(_spawnDuration));
         _waveCounter++;
     }
 
