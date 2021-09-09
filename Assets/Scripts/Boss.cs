@@ -5,8 +5,15 @@ using UnityEngine;
 public class Boss : MonoBehaviour
 {
 
+    // General  variables
+    [SerializeField]
+    private int _hits = 0;
+    private int _currentPhase = 0;
+    [SerializeField]
+    private int _maxHits = 10;
     [SerializeField]
     private bool _isInmune = true;
+    // Movement variables
     [SerializeField]
     private float _speed = 5f;
     [SerializeField]
@@ -24,9 +31,11 @@ public class Boss : MonoBehaviour
     [SerializeField]
     private GameObject _bossAttack1;
     private Coroutine _phase1Routine;
-
+    // Phase 2 variables
     [SerializeField]
-    private int _currentPhase = 0;
+    private GameObject _enemyPrefab;
+    private Coroutine _phase2Routine;
+
 
     // Start is called before the first frame update
     void Start()
@@ -69,6 +78,46 @@ public class Boss : MonoBehaviour
             yield return new WaitForSeconds(Random.Range(1f,_attackDelay));
             Instantiate(_bossAttack1, _rightCannon.position, Quaternion.identity);
             yield return new WaitForSeconds(Random.Range(1f,_attackDelay));
+        }
+    }
+
+    IEnumerator Phase2AttackRoutine() 
+    {
+        while (true) 
+        {
+            // Calculating random position
+            float randomXPosition = Random.Range(-9f, 9f);
+            Vector3 randomPosition = new Vector3(randomXPosition, 8f, transform.position.z);
+                    
+            // Spawning enemy and wait 5 seconds
+            GameObject newEnemy = Instantiate(_enemyPrefab, randomPosition, Quaternion.identity);
+            yield return new WaitForSeconds(5f);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) 
+    {
+        if (other.CompareTag("Laser")) 
+        {
+            Destroy(other.gameObject);
+            _hits++;
+            Debug.Log("hits: "+_hits);
+            
+            if (_hits >= _maxHits) 
+            {
+                _hits = 0;
+                _currentPhase++;
+
+                switch(_currentPhase) 
+                {
+                    case 1:
+                        _phase2Routine = StartCoroutine(Phase2AttackRoutine());
+                        break;
+                    case 2: 
+                        // active phase 3
+                        break;
+                }
+            }
         }
     }
 

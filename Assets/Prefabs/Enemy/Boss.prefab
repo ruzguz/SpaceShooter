@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 1739123275022959280}
   - component: {fileID: 8623589692730487387}
   - component: {fileID: 4293181602648001558}
+  - component: {fileID: 4378417841685527485}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Enemy
@@ -182,7 +183,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.036339045, y: 0.06056428}
+  m_Offset: {x: 0.036339045, y: 0.75927687}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -193,7 +194,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.0917687, y: 2.6731868}
+  m_Size: {x: 2.0917687, y: 1.2757616}
   m_EdgeRadius: 0
 --- !u!95 &8623589692730487387
 Animator:
@@ -226,6 +227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f4181b28f0644588955a96b7d5ac5bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hits: 0
   _isInmune: 1
   _speed: 5
   _frequncy: 0
@@ -234,4 +236,30 @@ MonoBehaviour:
   _rightCannon: {fileID: 1036632038}
   _attackDelay: 2
   _bossAttack1: {fileID: 5864357776533188776, guid: fcfe5b5298fd8420195af18308092fdc, type: 3}
-  _currentPhase: 0
+  _enemyPrefab: {fileID: 6484963360147526563, guid: 40e555f5e70224096a8134789a544aa5, type: 3}
+--- !u!61 &4378417841685527485
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6484963360147526563}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.06351942, y: -0.6193137}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5.12, y: 5.12}
+    newSize: {x: 5.12, y: 5.12}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.86420524, y: 1.5311565}
+  m_EdgeRadius: 0
