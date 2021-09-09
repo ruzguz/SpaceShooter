@@ -41,13 +41,13 @@ public class SpawnManager : MonoBehaviour
 
     void Update() 
     {
-        if (_waveCounter <= _lastWave) 
+        if (_waveCounter < _lastWave) 
         {
             CheckWave();
         } else if (_boss == null)
         {
             StopSpawning();
-            _boss = Instantiate(_bossPrefab, new Vector3(0,12,0), Quaternion.identity);
+            _boss = Instantiate(_bossPrefab, new Vector3(7,12,0), Quaternion.identity);
         }
     }
 

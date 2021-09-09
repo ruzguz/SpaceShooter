@@ -226,3 +226,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f4181b28f0644588955a96b7d5ac5bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isInmune: 1
+  _speed: 5
+  _frequncy: 0
+  _magnitude: 0
+  _leftCannon: {fileID: 1294069799}
+  _rightCannon: {fileID: 1036632038}
+  _attackDelay: 2
+  _bossAttack1: {fileID: 5864357776533188776, guid: fcfe5b5298fd8420195af18308092fdc, type: 3}
+  _currentPhase: 0
