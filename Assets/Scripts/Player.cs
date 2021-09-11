@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField]
+    private bool _isImmune = false;
     // General vars
     private Vector3 startingPosition = new Vector3(0,-3,0);
     [SerializeField]
@@ -341,6 +343,11 @@ public class Player : MonoBehaviour
         _uiManager.UpdateAmmo(_ammo, _maxAmmo);
     }
 
+    public void ActiveImmunity()
+    {
+        _isImmune = true;
+    }
+
     public void Heal()
     {
         if (_lives < 3) 
@@ -354,21 +361,25 @@ public class Player : MonoBehaviour
     public void Damage()
     {
         _gameManager.ShakeCamera();
-        _lives--;
-        _uiManager.UpdateLives(_lives);
-        _damageAudio.Play();
-
-
-        DrawEngineDamage();
-
-        // Check dead
-        if (_lives <= 0) 
+        if (_isImmune == false) 
         {
-            _spawnManager.OnPlayerDead();
-            //_uiManager.ShowGameOverScreen();
-            PlayerPrefs.SetInt("YourScore", _score);
-            _gameManager.GameOver();
-            Destroy(this.gameObject);
+            //_lives--;
+            
+            _uiManager.UpdateLives(_lives);
+            _damageAudio.Play();
+
+
+            DrawEngineDamage();
+
+            // Check dead
+            if (_lives <= 0) 
+            {
+                _spawnManager.OnPlayerDead();
+                //_uiManager.ShowGameOverScreen();
+                PlayerPrefs.SetInt("YourScore", _score);
+                _gameManager.GameOver();
+                Destroy(this.gameObject);
+            }
         }
     }
 

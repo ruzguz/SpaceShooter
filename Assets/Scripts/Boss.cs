@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Boss : MonoBehaviour
 {
-
+    private Animator _animator;
+    [SerializeField]
+    private GameManager _gameManager;
     // General  variables
     [SerializeField]
     private Player _player;
@@ -47,6 +49,8 @@ public class Boss : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _animator = GetComponent<Animator>();
+        _gameManager = GameObject.Find("Game_Manager").GetComponent<GameManager>();;
         _player = GameObject.Find("Player").GetComponent<Player>();
 
         if (_player == null) 
@@ -63,12 +67,6 @@ public class Boss : MonoBehaviour
 
         _startPosition = new Vector3(0,3.5f,0);
         StartCoroutine(EntranceAnimationRoutine());
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     IEnumerator EntranceAnimationRoutine()
@@ -117,10 +115,28 @@ public class Boss : MonoBehaviour
         }
     }
 
+    IEnumerator ExplodeRoutine() 
+    {
+        _player.ActiveImmunity();
+        _magnitude = 0;
+        _animator.SetTrigger("OnEnemyDeath");
+        _leftEngine.SetActive(false);
+        _rightEngine.SetActive(false);
+        yield return new WaitForSeconds(3);
+        _gameManager.ShowVictoryScene();
+
+    }
+
     private void OnTriggerEnter2D(Collider2D other) 
     {
-        if (other.CompareTag("Laser")) 
+        if (other.CompareTag("Laser") || other.CompareTag("Combustion") || other.CompareTag("CombustionLaser")) 
         {
+
+            if (other.CompareTag("CombustionLaser")) 
+            {
+                other.GetComponent<CombustionLaser>().Explode();
+            }
+
             _player.UpdateScore(20);
             _audioSource.Play();
             Destroy(other.gameObject);
@@ -145,7 +161,7 @@ public class Boss : MonoBehaviour
                         break;
                     case 3:
                         _player.UpdateScore(200);
-                        // Show win screen
+                        StartCoroutine(ExplodeRoutine());
                         break;
                 }
             }

@@ -42,6 +42,11 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(2); // Lose Scene
     }
 
+    public void ShowVictoryScene()
+    {
+        SceneManager.LoadScene(3); // Win Scene
+    }
+
     void ResetGame()
     {
         SceneManager.LoadScene(1); // Load Game Scene 
