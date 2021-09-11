@@ -36,9 +36,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void FinishGame()
+    public void GameOver()
     {
         _gameIsOver =  true;
+        SceneManager.LoadScene(2); // Lose Scene
     }
 
     void ResetGame()
