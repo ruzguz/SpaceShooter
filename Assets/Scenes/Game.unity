@@ -255,13 +255,17 @@ PrefabInstance:
       propertyPath: _maxHits
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4293181602648001558, guid: 69d1569cb37e9447ea032fd440fbf5da, type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 848867533}
     - target: {fileID: 6484963360147526563, guid: 69d1569cb37e9447ea032fd440fbf5da, type: 3}
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
     - target: {fileID: 6484963360147526575, guid: 69d1569cb37e9447ea032fd440fbf5da, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6484963360147526575, guid: 69d1569cb37e9447ea032fd440fbf5da, type: 3}
       propertyPath: m_LocalPosition.y

@@ -6,6 +6,8 @@ public class Boss : MonoBehaviour
 {
 
     // General  variables
+    [SerializeField]
+    private Player _player;
     private AudioSource _audioSource;
     [SerializeField]
     private GameObject _leftEngine, _rightEngine;
@@ -17,6 +19,7 @@ public class Boss : MonoBehaviour
     [SerializeField]
     private bool _isInmune = true;
     // Movement variables
+    private float _timeOffset;
     [SerializeField]
     private float _speed = 5f;
     [SerializeField]
@@ -30,7 +33,7 @@ public class Boss : MonoBehaviour
     
     // Phase 1 variables
     [SerializeField]
-    private float _attackDelay = 2f;
+    private float _attackDelay = 4f;
     [SerializeField]
     private GameObject _bossAttack1;
     private Coroutine _phase1Routine;
@@ -38,7 +41,7 @@ public class Boss : MonoBehaviour
     [SerializeField]
     private GameObject _enemyPrefab;
     private Coroutine _phase2Routine;
-
+    
 
 
     // Start is called before the first frame update
@@ -68,6 +71,7 @@ public class Boss : MonoBehaviour
             transform.Translate(Vector3.down * _speed * Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
+        _timeOffset = Time.time;
         StartCoroutine(WaveMovementRoutine());
         _phase1Routine = StartCoroutine(Phase1AttackRoutine());
     }
@@ -76,7 +80,7 @@ public class Boss : MonoBehaviour
     {
         while(true) 
         {
-            transform.position = _startPosition + Vector3.right * Mathf.Sin(Time.time * _frequncy) * _magnitude;
+            transform.position = _startPosition + Vector3.right * Mathf.Sin((Time.time - _timeOffset) * _frequncy) * _magnitude;
             yield return new WaitForEndOfFrame();
         }
     }
@@ -110,6 +114,7 @@ public class Boss : MonoBehaviour
     {
         if (other.CompareTag("Laser")) 
         {
+            _player.UpdateScore(20);
             _audioSource.Play();
             Destroy(other.gameObject);
             _hits++;
@@ -127,10 +132,12 @@ public class Boss : MonoBehaviour
                         _leftEngine.SetActive(true);
                         break;
                     case 2: 
-                        // active phase 3
+                        _player.UpdateScore(100);
+                        _attackDelay = 1.5f;
                         _rightEngine.SetActive(true);
                         break;
                     case 3:
+                        _player.UpdateScore(200);
                         // Show win screen
                         break;
                 }

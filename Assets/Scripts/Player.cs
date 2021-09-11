@@ -114,7 +114,7 @@ public class Player : MonoBehaviour
     {
         // If player press left Key 
         // Then change speed value
-        if (Input.GetKey(KeyCode.LeftShift)  && !_fuelCooldownActive) 
+        if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))  && !_fuelCooldownActive) 
         {
             if (_fuel > 0) 
             {
@@ -133,7 +133,7 @@ public class Player : MonoBehaviour
 
         // If player releases the shift key
         // Then set speed to normal
-        if (Input.GetKeyUp(KeyCode.LeftShift)) 
+        if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.RightShift)) 
         {
             _thruster.SetActive(false);
             _extraSpeed = 0f;
@@ -354,7 +354,7 @@ public class Player : MonoBehaviour
     public void Damage()
     {
         _gameManager.ShakeCamera();
-        _lives--;
+        //_lives--;
         _uiManager.UpdateLives(_lives);
         _damageAudio.Play();
 
