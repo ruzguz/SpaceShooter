@@ -92,10 +92,5 @@ public class Powerup : MonoBehaviour
             Destroy(other.gameObject);
             Destroy(gameObject);
         }
-
-        if (other.CompareTag("Enemy")) 
-        {
-            Destroy(gameObject);
-        }
     }
 }

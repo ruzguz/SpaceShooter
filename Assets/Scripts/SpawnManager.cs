@@ -14,7 +14,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private GameObject[] _powerups;
     [SerializeField]
-    private float _spawnPowerupDelay = 7f;
+    private float _spawnPowerupDelay = 4f;
     [SerializeField]
     private bool _stopSpawn = false;
     [SerializeField]
@@ -47,7 +47,7 @@ public class SpawnManager : MonoBehaviour
         } else if (_boss == null)
         {
             StopSpawning();
-            _boss = Instantiate(_bossPrefab, new Vector3(7,12,0), Quaternion.identity);
+            _boss = Instantiate(_bossPrefab, new Vector3(0,12,0), Quaternion.identity);
         }
     }
 

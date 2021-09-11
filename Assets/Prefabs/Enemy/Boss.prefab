@@ -230,14 +230,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f4181b28f0644588955a96b7d5ac5bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _player: {fileID: 0}
   _leftEngine: {fileID: 5500240978682349429}
   _rightEngine: {fileID: 1761280160880171348}
   _hits: 0
-  _maxHits: 10
+  _maxHits: 3
   _isInmune: 1
   _speed: 5
-  _frequncy: 0
-  _magnitude: 0
+  _frequncy: 1.2
+  _magnitude: 8
   _leftCannon: {fileID: 1294069799}
   _rightCannon: {fileID: 1036632038}
   _attackDelay: 2

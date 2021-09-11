@@ -47,6 +47,13 @@ public class Boss : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _player = GameObject.Find("Player").GetComponent<Player>();
+
+        if (_player == null) 
+        {
+            Debug.LogError("Player is NULL");
+        }
+
         _audioSource = GetComponent<AudioSource>();
 
         if (_audioSource ==  null) 
