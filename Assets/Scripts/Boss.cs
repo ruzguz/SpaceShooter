@@ -6,6 +6,9 @@ public class Boss : MonoBehaviour
 {
 
     // General  variables
+    private AudioSource _audioSource;
+    [SerializeField]
+    private GameObject _leftEngine, _rightEngine;
     [SerializeField]
     private int _hits = 0;
     private int _currentPhase = 0;
@@ -37,9 +40,17 @@ public class Boss : MonoBehaviour
     private Coroutine _phase2Routine;
 
 
+
     // Start is called before the first frame update
     void Start()
     {
+        _audioSource = GetComponent<AudioSource>();
+
+        if (_audioSource ==  null) 
+        {
+            Debug.LogError("Audio Source is NULL");
+        }
+
         _startPosition = new Vector3(0,3.5f,0);
         StartCoroutine(EntranceAnimationRoutine());
     }
@@ -99,6 +110,7 @@ public class Boss : MonoBehaviour
     {
         if (other.CompareTag("Laser")) 
         {
+            _audioSource.Play();
             Destroy(other.gameObject);
             _hits++;
             Debug.Log("hits: "+_hits);
@@ -112,9 +124,14 @@ public class Boss : MonoBehaviour
                 {
                     case 1:
                         _phase2Routine = StartCoroutine(Phase2AttackRoutine());
+                        _leftEngine.SetActive(true);
                         break;
                     case 2: 
                         // active phase 3
+                        _rightEngine.SetActive(true);
+                        break;
+                    case 3:
+                        // Show win screen
                         break;
                 }
             }
