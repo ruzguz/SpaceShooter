@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private bool _isImmune = false;
     // General vars
+    private Animator _animator;
     private Vector3 startingPosition = new Vector3(0,-3,0);
     [SerializeField]
     private int _lives = 3;
@@ -98,7 +99,12 @@ public class Player : MonoBehaviour
 
         _spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
         _uiManager = GameObject.Find("UI_Manager").GetComponent<UIManager>();
+        _animator = GetComponent<Animator>();
 
+        if (_animator == null) 
+        {
+            Debug.LogError("Animator is NULL");
+        }
         if (_spawnManager == null) 
         {
             Debug.LogError("Spawn Manager is NULL");
@@ -290,6 +296,18 @@ public class Player : MonoBehaviour
         if (_isSystemHacked) 
         {
             transform.Translate(_hackingPath * (_speed + _extraSpeed) * Time.deltaTime);
+        }
+
+        // Handle animation
+        if (horizontalInput > 0) 
+        {
+            _animator.SetInteger("path", 1);
+        } else if (horizontalInput < 0) 
+        {
+            _animator.SetInteger("path", -1);
+        } else if (horizontalInput == 0) 
+        {
+            _animator.SetInteger("path", 0);
         }
 
         // Vertical bounds
