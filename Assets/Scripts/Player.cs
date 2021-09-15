@@ -381,7 +381,7 @@ public class Player : MonoBehaviour
         _gameManager.ShakeCamera();
         if (_isImmune == false) 
         {
-            //_lives--;
+            _lives--;
             
             _uiManager.UpdateLives(_lives);
             _damageAudio.Play();
